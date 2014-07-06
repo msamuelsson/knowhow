@@ -1,0 +1,7 @@
+%h2 Add new company
+
+= form_tag energies_path, :method => :post do
+  = render :partial => 'energy_form'
+
+  = submit_tag 'Save'
+  = link_to 'Cancel', energies_path

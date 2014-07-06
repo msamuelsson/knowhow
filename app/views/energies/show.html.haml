@@ -1,0 +1,21 @@
+-# in app/views/energies/show.html.haml
+
+-#%h2 Details about #{@energy.compagnia}
+
+%ul#details
+  %li
+    Provvigioni:
+    = @energy.provvigione
+  %li
+    Autore:
+    = @energy.autore
+	
+
+
+-#%h3 Description:
+-#%p#description= @movie.description
+
+= link_to 'Edit info', edit_energy_path(@energy)
+= button_to 'Delete', energy_path(@energy), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to company list', energies_path 
+-#= link_to 'Add Review', new_movie_review_path(@movie)
