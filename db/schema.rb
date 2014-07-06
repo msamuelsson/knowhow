@@ -11,24 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705102448) do
+ActiveRecord::Schema.define(version: 20140706214950) do
 
-  create_table "energies", force: true do |t|
-    t.string   "compagnia"
-    t.integer  "provvigione"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "autore"
-    t.string   "canale_1"
-    t.string   "canale_2"
-    t.string   "interlocutore"
-    t.text     "note_operative"
-    t.boolean  "portale"
-    t.string   "premio_minimo"
-    t.string   "scheda_condizioni"
-    t.string   "questionari"
-    t.string   "brochure"
-    t.text     "nota_informativa"
+  create_table "companies", force: true do |t|
+    t.string  "compagnia"
+    t.string  "area"
+    t.decimal "provvigione",       precision: 4, scale: 2
+    t.date    "aggiornamento"
+    t.string  "autore"
+    t.string  "canale_1"
+    t.string  "canale_2"
+    t.string  "interlocutore"
+    t.text    "note_operative"
+    t.boolean "portale"
+    t.string  "premio_minimo"
+    t.string  "scheda_condizioni"
+    t.string  "questionari"
+    t.string  "brochure"
+    t.text    "nota_informativa"
   end
 
 end

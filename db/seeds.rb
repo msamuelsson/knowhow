@@ -1,15 +1,59 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Energy companies seeds
 
-more_energies = [{:compagnia => 'Italian Synkronos', :canale_1 => 'Milano', :interlocutore => 'Dotti/Basan', :portale => :true}, 
-                         {:compagnia => 'TUA', :canale_1 => 'Direzione Milano', :portale => :true}, 
-                         {:compagnia => 'Zurich', :canale_1 => 'Direzione Milano', :interlocutore => 'Menapace/Provolo', :note_operative => 'xs'}]
+more_companies = [{:canale_1 => 'Milano',
+ :portale => :true,
+ :compagnia => 'ITALIANA SYNKRONOS',
+ :interlocutore => 'Dotti / Basan',
+ :area => 'Energy',
+ },
+{:compagnia => 'TUA',
+ :canale_1 => 'Direzione Milano',
+ :portale => :true,
+ :area => 'Energy',
+ },
+{:interlocutore => 'Menapace / Provolo',
+ :compagnia => 'ZURICH',
+ :canale_1 => 'Dir. Milano',
+ :area => 'Energy',
+ },
+{:canale_1 => 'Gerenza Roma',
+ :interlocutore => 'Zimatore',
+ :compagnia => 'GENERALI INA ASSITALIA',
+ :area => 'Energy',
+ },
+{:canale_1 => 'Wiass',
+ :compagnia => 'AXA VERS.',
+ :area => 'Energy',
+ },
+{:canale_1 => 'Direzione Milano',
+ :compagnia => 'ITAS',
+ :area => 'Energy',
+ },
+{:canale_1 => 'Zurigo',
+ :compagnia => 'CATLIN',
+ :interlocutore => 'Francesca',
+ :area => 'Energy',
+ },
+{:compagnia => 'CNA',
+ :aggiornamento => DateTime.strptime('04/12/13', '%d/%m/%y'),
+ :canale_1 => 'Direzione Milano',
+ :note_operative => 'disponibili a quotare + convenzione
+Italia quota con Danimarca e Londra',
+ :area => 'Energy',
+ },
+{:canale_1 => 'Londra',
+ :compagnia => 'GCUBE',
+ :area => 'Energy',
+ },
+{:note_operative => 'da verificare operatività',
+ :canale_1 => 'Direzione Padova',
+ :interlocutore => 'Maini',
+ :compagnia => 'ALLIANZ',
+ :area => 'Energy',
+ },
+]
 
-more_energies.each do |energy|
-                  Energy.create!(energy)
+more_companies.each do |company|
+                   Company.create!(company)
 end
+
