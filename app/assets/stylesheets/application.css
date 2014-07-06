@@ -57,7 +57,7 @@ table#energies th {
   font-weight: bold;
   background-color: wheat;
 }
-table#eneries th, table#energies td {
+table#energies th, table#energies td {
   padding: 4px;
   text-align: left;
 }

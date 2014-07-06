@@ -1,0 +1,21 @@
+-# in app/views/companies/show.html.haml
+
+-#%h2 Details about #{@company.compagnia}
+
+%ul#details
+  %li
+    Provvigioni:
+    = @company.provvigione
+  %li
+    Autore:
+    = @company.autore
+	
+
+
+-#%h3 Description:
+-#%p#description= @movie.description
+
+= link_to 'Edit info', edit_company_path(@company)
+= button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to company list', companies_path 
+-#= link_to 'Add Review', new_movie_review_path(@movie)
