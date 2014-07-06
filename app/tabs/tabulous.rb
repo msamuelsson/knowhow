@@ -4,10 +4,10 @@ Tabulous.setup do
 
     energies_tab do
       text          { 'Energy' }
-      link_path     { energies_path }
+      link_path     { companies_path }
       visible_when  { true }
       enabled_when  { true }
-      active_when   { in_action('any').of_controller('energies') }
+      active_when   { in_action('any').of_controller('companies') }
     end
 
     

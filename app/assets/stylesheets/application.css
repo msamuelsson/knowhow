@@ -46,22 +46,22 @@ h1.title {
   font-style: normal;
 }
 
-table#energies {
+table#companies {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
   border-bottom: 2px solid black;
 }
-table#energies th {
+table#companies th {
   border: 2px solid white;
   font-weight: bold;
   background-color: wheat;
 }
-table#energies th, table#energies td {
+table#companies th, table#companies td {
   padding: 4px;
   text-align: left;
 }
-table#energies tr:hover {
+table#companies tr:hover {
   background-color: yellow;  
 }
 

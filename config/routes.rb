@@ -54,6 +54,6 @@
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-   resources :energies
-   root :to => redirect('/energies')
+   resources :companies
+   root :to => redirect('/companies')
 end

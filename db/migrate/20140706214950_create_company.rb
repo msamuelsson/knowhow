@@ -16,6 +16,7 @@ class CreateCompany < ActiveRecord::Migration
 		  t.string :questionari
 		  t.string :brochure
 		  t.text :nota_informativa
+		  t.timestamps
 
 	  end
   end

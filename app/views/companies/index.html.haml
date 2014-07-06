@@ -5,6 +5,7 @@
   %thead
     %tr
       %th Compagnia
+      %th Area
       %th Provvigioni
       %th Autore
       %th Ultimo Aggiornamento
@@ -16,10 +17,10 @@
     - @companies.each do |company|
       %tr
         -#%td= company.compagnia
-        %td#more_info= link_to "More about #{company.compagnia}", company_path(company)
-        -#%td= link_to '#{company.compagnia}', company_path(company)
+        %td#more_info= link_to "#{company.compagnia}", company_path(company)
+        %td= company.area
         %td= company.provvigione
         %td= company.autore
-        %td= company.updated_at
+        %td= company.aggiornamento
 
 = link_to 'Add new company', new_company_path
