@@ -60,12 +60,39 @@ table#companies th {
 table#companies th, table#companies td {
   padding: 4px;
   text-align: left;
+  font-size: 0.8em;
 }
 table#companies tr:hover {
   background-color: yellow;  
 }
 
-#energies_tab {
-    font-weight: normal;
-    color: wheat;
+h2 {
+  color:wheat;
+  font-size: 130%;
+  font-style: normal;
+  display: block;
+  width: 100%;
+  border-bottom: 2px solid DarkSlateGrey;
+}
+
+p {
+ font-size: 100%;
+ font-style: bold;
+}
+
+
+#notice {
+  background: yellow;
+  margin: 1em 0;
+  padding: 4px;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+#warning {
+  padding: 0.5em;
+  color: red;
+  font-weight: bold;
+  border: 2px solid red;
 }

@@ -1,14 +1,23 @@
 -# in app/views/companies/show.html.haml
 
--#%h2 Details about #{@company.compagnia}
+%h2 Details about #{@company.compagnia}
+
+%p Company: #{@company.compagnia}
+%p Area: #{@company.area}
 
 %ul#details
-  %li
-    Area:
-    = @company.area
-
-	
-
+   %li
+      Company:
+      = @company.compagnia
+   %li
+      Area:
+      = @company.area
+   %li
+      Provvigioni:
+      = @company.provvigione
+   %li
+      Autore:
+      = @company.autore
 
 -#%h3 Description:
 -#%p#description= @movie.description

@@ -4,6 +4,7 @@
 %table#companies
   %thead
     %tr
+      %th Edit
       %th Compagnia
       %th Area
       %th Provvigioni
@@ -16,8 +17,10 @@
   %tbody
     - @companies.each do |company|
       %tr
-        -#%td= company.compagnia
-        %td#more_info= link_to "#{company.compagnia}", company_path(company)
+        %td= link_to 'Edit', edit_company_path(company)
+        -#%td= link_to 'Edit', edit_company_path(company)
+        %td= company.compagnia
+        -#%td#more_info= link_to "#{company.compagnia}", company_path(company)
         %td= company.area
         %td= company.provvigione
         %td= company.autore
