@@ -43,3 +43,7 @@ gem 'haml'
 
 # Use Tabulous for tabbed navigation bar
 gem 'tabulous'
+
+gem 'execjs'
+gem 'therubyracer'
+

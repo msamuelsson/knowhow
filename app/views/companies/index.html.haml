@@ -1,29 +1,39 @@
 -#  This file is app/views/companies/index.html.haml
-%h1 All Companies
 
-%table#companies
-  %thead
-    %tr
-      %th Edit
-      %th Compagnia
-      %th Area
-      %th Provvigioni
-      %th Autore
-      %th Ultimo Aggiornamento
-      %th Canale 1
-      %th Canale 2
-      %th Interlocutore
+%div#header
+  %h1 Welcome to knowhow
 
-  %tbody
-    - @companies.each do |company|
+%div#left
+  -#= render :partial => 'login_form'
+  %p Login
+  %form action=""
+  %select name="cars"
+  %option value="volvo" Volvo
+
+%div#right
+  %table#companies
+    %thead
       %tr
-        %td= link_to 'Edit', edit_company_path(company)
-        -#%td= link_to 'Edit', edit_company_path(company)
-        %td= company.compagnia
-        -#%td#more_info= link_to "#{company.compagnia}", company_path(company)
-        %td= company.area
-        %td= company.provvigione
-        %td= company.autore
-        %td= company.aggiornamento
+        %th Edit
+        %th Compagnia
+        %th Area
+        %th Provvigioni
+        %th Autore
+        %th Ultimo Aggiornamento
+        %th Canale 1
+        %th Canale 2
+        %th Interlocutore
 
-= link_to 'Add new company', new_company_path
+    %tbody
+      - @companies.each do |company|
+        %tr
+          %td= link_to 'Edit', edit_company_path(company)
+          -#%td= link_to 'Edit', edit_company_path(company)
+          %td= company.compagnia
+          -#%td#more_info= link_to "#{company.compagnia}", company_path(company)
+          %td= company.area
+          %td= company.provvigione
+          %td= company.autore
+          %td= company.aggiornamento
+
+  = link_to 'Add new company', new_company_path

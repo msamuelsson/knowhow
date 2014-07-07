@@ -29,7 +29,6 @@ a {
   font-weight: bold;
 }
 h1 {
-  color:wheat;
   font-size: 150%;
   font-style: normal;
   display: block;
@@ -55,7 +54,6 @@ table#companies {
 table#companies th {
   border: 2px solid white;
   font-weight: bold;
-  background-color: wheat;
 }
 table#companies th, table#companies td {
   padding: 4px;
@@ -63,7 +61,7 @@ table#companies th, table#companies td {
   font-size: 0.8em;
 }
 table#companies tr:hover {
-  background-color: yellow;  
+  background-color: 6666FF;  
 }
 
 h2 {
@@ -95,4 +93,37 @@ p {
   color: red;
   font-weight: bold;
   border: 2px solid red;
+}
+
+#header {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  margin-top: -7px;
+  height: 60px;
+  background-color: #EDF6FF;
+  margin-bottom: 10px
+}
+
+#left {
+  position: relative;
+  float: left;
+  margin-top: 60px;
+  width: 10%;
+  height: 400px;
+  background-color: #EDF6FF;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center; 
+  
+}
+
+#right {
+  position: relative;
+  float: right;
+  margin-top: 60px;
+  width: 88%;
+  height: 400px;
+  background-color: #EDF6FF;
+  margin-bottom: 10px;
 }
