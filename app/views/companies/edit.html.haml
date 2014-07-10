@@ -3,9 +3,10 @@
 = form_tag company_path(@company), :method => :put do
 
   = render :partial => 'company_form'
-  
-  
+ 
   = submit_tag 'Update Company Info'
-  = button_to 'Delete Company', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
+%p
+  = link_to 'Delete Company', company_path(@company), :method =>:delete, :confirm => 'Are you sure?'
+%p
   = link_to 'Back to company list', companies_path 
   -#= link_to 'Cancel', company_path(@company)

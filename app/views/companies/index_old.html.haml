@@ -1,6 +1,14 @@
 -#  This file is app/views/companies/index.html.haml
 %h1 All Companies
 
+= form_tag companies_path, :id => "areas_form", :method => :get do
+  Include:
+  - @all_areas.each do |area|
+    = area
+    = check_box_tag "areas[#{area}]", 1, if params[:areas]; params[:areas].include?(area); else true; end, :id => "areas_#{area}"
+    -#= check_box_tag "areas[#{area}]", 1, @selected_areas.include?(area), :id => "areas_#{area}"
+  = submit_tag 'Refresh', :id => "areas_submit"
+
 %table#companies
   %thead
     %tr

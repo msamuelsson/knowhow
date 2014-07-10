@@ -6,15 +6,24 @@
 = text_field :company, 'compagnia'
 
 = label :company, :area, 'Area'
-= text_field :company, 'area'
-
-= label :company, :provvigione, 'Provvigioni'
-= text_field :company, 'provvigione'
+= select :company, :area, Company.all_areas
+-#= label :company, :area, 'Area'
+-#= text_field :company,  'area'
 
 = label :company, :autore, 'Autore'
 = text_field :company, 'autore'
+%p
+= label :company, :provvigione, 'Provvigioni'
+= text_field :company, 'provvigione'
 
+-#= label :company, :updated_at, 'Ultimo Aggiornamento'
+-#= datetime :company, 'updated_at'
 
+= label :company, :canale_1, 'Canale 1'
+= text_field :company, 'canale_1'
+
+= label :company, :canale_2, 'Canale 2'
+= text_field :company, 'canale_2'
 
 
 

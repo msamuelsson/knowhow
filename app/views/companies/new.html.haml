@@ -1,7 +1,9 @@
-%h2 Add new company
+%h1 Add new company
 
-= form_tag companies_path, :method => :post do
+%div#addcompany
+ = form_tag companies_path, :method => :post do
   = render :partial => 'company_form'
 
   = submit_tag 'Save'
-  = link_to 'Cancel', companies_path
+  %p
+   = link_to 'Back to companies list', companies_path

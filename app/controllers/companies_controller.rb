@@ -1,6 +1,25 @@
 class CompaniesController < ApplicationController
+      #def index
+          #@all_areas = Company.all_areas
+      	  #@companies = Company.all
+      #end
+
       def index
-      	  @companies = Company.all
+        sort = params[:sort] || session[:sort]
+        @all_areas = Company.all_areas
+        @selected_areas = params[:areas] || session[:areas] || {}
+
+        if @selected_areas == {}
+          @selected_areas = Hash[@all_areas.map {|area| [area, area]}]
+        end
+
+        if params[:sort] != session[:sort] or params[:areas] != session[:areas]
+          session[:sort] = sort
+          session[:areas] = @selected_areas
+          flash.keep
+          redirect_to :sort => sort, :areas => @selected_areas and return
+        end
+        @companies = Company.where(area:@selected_areas.keys).order(sort)
       end
 
       def new
@@ -47,6 +66,6 @@ class CompaniesController < ApplicationController
 
       private
         def company_params
-          params.require(:company).permit(:compagnia, :area, :provvigione, :autore)
+          params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore)
         end
 end
