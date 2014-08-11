@@ -1,9 +1,7 @@
 -# in app/views/companies/show.html.haml
 
-%h2 Details about #{@company.compagnia}
-
-%p Company: #{@company.compagnia}
-%p Area: #{@company.area}
+%h1 Details 
+-#%h2 Details about #{@company.compagnia}
 
 %ul#details
    %li
@@ -18,11 +16,49 @@
    %li
       Autore:
       = @company.autore
+   %li
+      Ultimo Aggiornamento:
+      = @company.aggiornamento
+   %li
+      Canale 1:
+      = @company.canale_1
+   %li
+      Canale 2:
+      = @company.canale_2
+   %li
+      Interlocutore:
+      = @company.interlocutore
+   %li
+      Note Operative:
+      = @company.note_operative
+   %li
+      Portale:
+      = @company.portale
+   %li
+      Premio Minimo:
+      = @company.premio_minimo
+   %li
+      Scheda Condizioni:
+      = @company.scheda_condizioni
+   %li
+      Questionari Nostri:
+      = @company.questionari
+   %li
+      Brochure ns o Compagnia:
+      = @company.brochure
+   %li
+      Nota Informativa:
+      = @company.nota_informativa
+   %li
+      Created At:
+      = @company.created_at
+   %li
+      Updated At:
+      = @company.updated_at
 
--#%h3 Description:
--#%p#description= @movie.description
+%div#details_edit
+   = link_to 'Edit Company Information', edit_company_path(@company)
 
-= link_to 'Edit info', edit_company_path(@company)
-= button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Back to company list', companies_path 
--#= link_to 'Add Review', new_movie_review_path(@movie)
+%div#details_back
+   = link_to 'Back to company list', companies_path(:area_filter => @company.area)  
+

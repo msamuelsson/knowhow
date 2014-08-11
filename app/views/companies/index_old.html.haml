@@ -9,6 +9,28 @@
     -#= check_box_tag "areas[#{area}]", 1, @selected_areas.include?(area), :id => "areas_#{area}"
   = submit_tag 'Refresh', :id => "areas_submit"
 
+-# Radio buttons
+%div#left
+  = form_tag companies_path, :id => "areas_form", :method => :get do 
+    %p Select area
+    %div{align: "left"}
+    %br/
+    -#%input{checked: "checked", name: "area_filter", type: "radio", value: "Energy"}/
+    %input{name: "area_filter", type: "radio", value: "Energy"}/
+    Energy
+    %br
+    %input{name: "area_filter", type: "radio", value: "Technology"}/
+    Technology
+    %br
+    %input{name: "area_filter", type: "radio", value: "Liability"}/
+    Liability
+    %br
+    %input{name: "area_filter", type: "radio", value: "Cauzione"}/
+    Cauzione
+    %br
+    %br
+    %input{type: "submit" }/ 
+
 %table#companies
   %thead
     %tr

@@ -1,4 +1,4 @@
--# in _company_form.html.haml (the partial)
+-# in _editcompany_form.html.haml (the partial)
 
 = label :company, :compagnia, 'Compagnia'
 = text_field :company, 'compagnia'
@@ -6,7 +6,7 @@
 -#= label :company, :area, 'Area'
 -#= select :company, :area, Company.all_areas
 = label :company, :area, 'Area'
-= text_field :company, :area,  :value => "#{@selected_area}"
+= text_field :company, :area,  :value => "#{@company.area}"
 
 = label :company, :autore, 'Autore'
 = text_field :company, 'autore'
@@ -47,15 +47,11 @@
 = label :company, :nota_informativa, 'Nota Informativa'
 = text_field :company, 'nota_informativa'
 
--#= label :company, :created_at, 'Created at'
--#= text_field :company, 'created_at'
+= label :company, :created_at, 'Created at'
+= text_field :company, 'created_at'
 
--#= label :company, :updated_at, 'Updated at'
--#= text_field :company, 'updated_at'
+= label :company, :updated_at, 'Updated at'
+= text_field :company, 'updated_at'
 
 %div#button
- = submit_tag 'Save'
-
-
-
-
+ = submit_tag 'Update Company Info'

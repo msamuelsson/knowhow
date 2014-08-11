@@ -1,9 +1,9 @@
 %h1 Add new company
 
-%div#addcompany
- = form_tag companies_path, :method => :post do
-  = render :partial => 'company_form'
 
-  = submit_tag 'Save'
-  %p
-   = link_to 'Back to companies list', companies_path
+= form_tag companies_path(@selected_area), :method => :post do
+ = render :partial => 'company_form'
+
+ -#= submit_tag 'Save'
+%div#back
+ = link_to 'Back to companies list', companies_path(:area_filter => @selected_area)
