@@ -114,13 +114,14 @@ h2 {
   height: 500px;
   background-color: transparent;
   margin-bottom: 10px;
-  font-size: 12px;
-  text-align: center; 
+  font-size: 13px;
   font-weight: bold;
   border-right: 1px solid DarkSlateGrey;
   overflow: scroll;
+  text-align: left;
+  padding-left: 1pt;
+  list-style: none;
 }
-
 
 #right {
   position: relative;
@@ -155,11 +156,6 @@ table#companies th .desc {
     background-image: url(/assets/down_arrow.gif);
 }
 
-ul {
-    padding-left: 3pt;
-    list-style: none;
-    text-align: left; 
-}
 
 #noteOperative {
   padding: 2ex;
@@ -232,21 +228,22 @@ input[type="submit"] {
 }
 
 ul#details {
-    margin-left: 15px;
+    list-style: none;
 }
 
-ul#details li {
-    font-weight: half-bold;
+.detailsfont {
+    font-weight: bold;
+    font-size: 12px;
 }
 
 #details_edit {
     position: absolute;
-    left: 11px;
+    left: 40px;
     top: 380px;
 }
 
 #details_back {
     position: absolute;
-    left: 11px;
+    left: 40px;
     top: 400px;
 }

@@ -3,38 +3,19 @@
 %h1 Welcome to knowhow
 
 -#%div#header
-  
-  
+
+-#%li{:class => (@selected_area == 'Energy'? "hilite" : nil)}= link_to'Energy', companies_path(:area_filter => 'Energy')
+
 %div#left
-  %ul
-    %li{:class => (@selected_area == 'Energy'? "hilite" : nil)}= link_to 'Energy', companies_path(:area_filter => 'Energy')
-    %li{:class => (@selected_area == 'Technology'? "hilite" : nil)}= link_to 'Technologici', companies_path(:area_filter => 'Technology')
-    %li{:class => (@selected_area == 'Liability'? "hilite" : nil)}= link_to 'Liability', companies_path(:area_filter => 'Liability')
-    %li{:class => (@selected_area == 'Cauzione'? "hilite" : nil)}= link_to 'Cauzione', companies_path(:area_filter => 'Cauzione')  
-    %li{:class => (@selected_area == 'Credit'? "hilite" : nil)}= link_to 'Credit', companies_path(:area_filter => 'Credit')  
-    %li{:class => (@selected_area == 'Rischi civili-Abitazioni'? "hilite" : nil)}= link_to 'Rischi civili-Abitazioni', companies_path(:area_filter => 'Rischi civili-Abitazioni')  
-    %li{:class => (@selected_area == 'Property'? "hilite" : nil)}= link_to 'Property', companies_path(:area_filter => 'Property')  
-    %li{:class => (@selected_area == 'Multirischi'? "hilite" : nil)}= link_to 'Multirischi', companies_path(:area_filter => 'Multirischi')  
-    %li{:class => (@selected_area == 'Marine'? "hilite" : nil)}= link_to 'Marine', companies_path(:area_filter => 'Marine')  
-    %li{:class => (@selected_area == 'A&H'? "hilite" : nil)}= link_to 'A&H', companies_path(:area_filter => 'A&H')  
-    %li{:class => (@selected_area == 'A&H Minorenni'? "hilite" : nil)}= link_to 'A&H Minorenni', companies_path(:area_filter => 'A&H Minorenni')  
-    %li{:class => (@selected_area == 'INFORT COND'? "hilite" : nil)}= link_to 'INFORT COND', companies_path(:area_filter => 'INFORT COND')  
-    %li{:class => (@selected_area == 'VITA'? "hilite" : nil)}= link_to 'VITA', companies_path(:area_filter => 'VITA')  
-    %li{:class => (@selected_area == 'RSM & LTC'? "hilite" : nil)}= link_to 'RSM & LTC', companies_path(:area_filter => 'RSM & LTC')  
-    %li{:class => (@selected_area == 'RC Prof Tecnici-Economici-Legal'? "hilite" : nil)}= link_to 'RC Prof Tecnici-Economici-Legal', companies_path(:area_filter => 'RC Prof Tecnici-Economici-Legal')  
-    %li{:class => (@selected_area == 'RC Prof Medmal'? "hilite" : nil)}= link_to 'RC Prof Medmal', companies_path(:area_filter => 'RC Prof Medmal')  
-    %li{:class => (@selected_area == 'D&O'? "hilite" : nil)}= link_to 'D&O', companies_path(:area_filter => 'D&O')  
-    %li{:class => (@selected_area == 'RCA'? "hilite" : nil)}= link_to 'RCA', companies_path(:area_filter => 'RCA')  
-    %li{:class => (@selected_area == 'CVT'? "hilite" : nil)}= link_to 'CVT', companies_path(:area_filter => 'CVT')  
-    %li{:class => (@selected_area == 'Tutela Legale'? "hilite" : nil)}= link_to 'Tutela Legale', companies_path(:area_filter => 'Tutela Legale')  
-    %li{:class => (@selected_area == 'Onlus'? "hilite" : nil)}= link_to 'Onlus', companies_path(:area_filter => 'Onlus')  
-    %li{:class => (@selected_area == 'Employee Benefit'? "hilite" : nil)}= link_to 'Employee Benefit', companies_path(:area_filter => 'Employee Benefit')  
-    %li{:class => (@selected_area == 'Rimpiazzo & posa in opera'? "hilite" : nil)}= link_to 'Rimpiazzo & posa in opera', companies_path(:area_filter => 'Rimpiazzo & posa in opera')  
-   
+  %ul#area
+  - @all_areas.each do |area| 
+    %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
+
+
+    
 
 
 %div#right
-  -#%p Selected Area: #{@selected_area} 
   %table#companies
     %thead
       %tr

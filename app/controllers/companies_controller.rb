@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
       
       helper_method :sort_column, :sort_direction
       def index
-         #@all_areas = Company.distinct(:area).pluck(:area)
+         @all_areas = Company.distinct(:area).pluck(:area)
 
          @selected_area = params[:area_filter] || session[:area_filter]
          if params[:area_filter] != session[:area_filter]
