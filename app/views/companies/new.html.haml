@@ -1,8 +1,8 @@
 %h1 Add new company
 
-
-= form_tag companies_path(@selected_area), :method => :post do
- = render :partial => 'company_form'
+%div#editcompany
+ = form_tag companies_path(@selected_area), :method => :post do
+  = render :partial => 'company_form'
 
  -#= submit_tag 'Save'
 %div#back

@@ -76,6 +76,7 @@ h2 {
   font-style: normal;
   display: block;
   width: 100%;
+  padding-left: 10px;
 }
 
 #notice {
@@ -117,10 +118,13 @@ h2 {
   font-size: 13px;
   font-weight: bold;
   border-right: 1px solid DarkSlateGrey;
-  overflow: scroll;
-  text-align: left;
-  padding-left: 1pt;
-  list-style: none;
+  overflow: scroll; 
+}
+
+ul#area {
+    list-style: none;
+    text-align: left;
+    padding-left: 3pt;
 }
 
 #right {
@@ -165,10 +169,10 @@ table#companies th .desc {
 }
 
 form {
-    position: relative;
+    position: absolute;
 }
 
-form label, input {
+#editcompany form label, input {
   float: left;
   width: 20em;
   margin-right: 0.5em;
@@ -195,7 +199,7 @@ select {
 #button {
     position: absolute;
     left: 550px;
-    top: 300px; 
+    top: 400px; 
 }
 
 input[type="submit"] {
@@ -212,13 +216,13 @@ input[type="submit"] {
 #delete {
     position: absolute;
     left: 11px;
-    top: 400px;
+    top: 450px;
 }
 
 #back {
     position: absolute;
     left: 11px;
-    top: 430px;
+    top: 500px;
 }
 
 #date {
@@ -239,11 +243,45 @@ ul#details {
 #details_edit {
     position: absolute;
     left: 40px;
-    top: 380px;
+    top: 400px;
 }
 
 #details_back {
     position: absolute;
     left: 40px;
-    top: 400px;
+    top: 420px;
+}
+
+form label, input {
+  /*float: left;*/
+  width: 20em;
+  margin-right: 0.5em;
+  padding-left: 10px;
+  margin-top: 0.7em;
+  text-align: left;
+}
+
+#email {
+    padding-left: 10px;
+}
+
+#password {
+    padding-left: 10px;
+    margin-top: 3em;
+}
+
+#remember {
+    margin-top: 5em;
+    float: left;
+}
+
+
+#submit {
+    padding-left: 10px;
+    margin-top: 2em;
+}
+
+#links {
+    padding-left: 10px;
+    margin-top: 20em;
 }

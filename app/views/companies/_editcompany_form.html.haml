@@ -1,5 +1,12 @@
 -# in _editcompany_form.html.haml (the partial)
 
+- unless @company.errors.empty?
+  #warning
+    Errors prevented this company from being #{controller.action_name}d:
+    %ul
+      - @company.errors.full_messages.each do |error|
+        %li= error
+
 = label :company, :compagnia, 'Compagnia'
 = text_field :company, 'compagnia'
 
@@ -54,4 +61,4 @@
 = text_field :company, 'updated_at'
 
 %div#button
- = submit_tag 'Update Company Info'
+  = submit_tag 'Update Company Info'

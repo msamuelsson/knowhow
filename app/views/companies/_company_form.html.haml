@@ -1,5 +1,13 @@
 -# in _company_form.html.haml (the partial)
 
+- unless @company.errors.empty?
+  #warning
+    Errors prevented this company from being #{controller.action_name}d:
+    %ul
+      - @company.errors.full_messages.each do |error|
+        %li= error
+
+
 = label :company, :compagnia, 'Compagnia'
 = text_field :company, 'compagnia'
 
@@ -7,6 +15,7 @@
 -#= select :company, :area, Company.all_areas
 = label :company, :area, 'Area'
 = text_field :company, :area,  :value => "#{@selected_area}"
+
 
 = label :company, :autore, 'Autore'
 = text_field :company, 'autore'
@@ -54,7 +63,7 @@
 -#= text_field :company, 'updated_at'
 
 %div#button
- = submit_tag 'Save'
+  = submit_tag 'Save'
 
 
 

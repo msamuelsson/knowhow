@@ -2,64 +2,73 @@
 
 %h1 Welcome to knowhow
 
--#%div#header
+%div#header
+ - if signed_in?
+  %p Signed in as #{current_user.email}
+  =link_to 'Sign out', destroy_user_session_path, :method => :delete
+ - elsif
+  %p You are signed out!
+  =link_to 'Sign Up', new_user_registration_path
+  =link_to 'Sign In', new_user_session_path
 
+ 
 -#%li{:class => (@selected_area == 'Energy'? "hilite" : nil)}= link_to'Energy', companies_path(:area_filter => 'Energy')
 
 %div#left
-  %ul#area
+ %ul#area
   - @all_areas.each do |area| 
-    %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
+   %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
 
 
     
 
 
 %div#right
-  %table#companies
-    %thead
-      %tr
-        %th= sortable "compagnia", "Compagnia"
-        -#%th{:class => (params[:sort] == 'compagnia'? "hilite" : nil)}= link_to "Compagnia", :sort => "compagnia"
-        -#%th Area
-        %th= sortable "provvigione", "Provvigioni"
-        -#%th{:class => (params[:sort] == 'provvigione'? "hilite" : nil)}= link_to "Provvigioni", :sort => "provvigione"
-        %th= sortable "autore", "Autore"
-        -#%th{:class => (params[:sort] == 'autore'? "hilite" : nil)}= link_to  "Autore", :sort => "autore"
-        %th= sortable "aggiornamento", "Ultimo Aggiornamento"
-        %th Canale 1
-        %th Canale 2
-        %th Interlocutore
-        -#%th Note Operative
-        %th Portale
-        %th Premio Minimo
-        -#%th Scheda Condizioni
-        -#%th Questionari Nostri
-        -#%th Brochure ns o Compagnia
-        -#%th Nota Informativa
-        -#%th Created At
-        -#%th Updated At
+ %table#companies
+  %thead
+   %tr
+    %th= sortable "compagnia", "Compagnia"
+    -#%th{:class => (params[:sort] == 'compagnia'? "hilite" : nil)}= link_to "Compagnia", :sort => "compagnia"
+    -#%th Area
+    %th= sortable "provvigione", "Provvigioni"
+    -#%th{:class => (params[:sort] == 'provvigione'? "hilite" : nil)}= link_to "Provvigioni", :sort => "provvigione"
+    %th= sortable "autore", "Autore"
+    -#%th{:class => (params[:sort] == 'autore'? "hilite" : nil)}= link_to  "Autore", :sort => "autore"
+    %th= sortable "aggiornamento", "Ultimo Aggiornamento"
+    %th Canale 1
+    %th Canale 2
+    %th Interlocutore
+    -#%th Note Operative
+    %th Portale
+    %th Premio Minimo
+    -#%th Scheda Condizioni
+    -#%th Questionari Nostri
+    -#%th Brochure ns o Compagnia
+    -#%th Nota Informativa
+    -#%th Created At
+    -#%th Updated At
 
     %tbody
-      - @selected_companies.each do |company|
-        %tr
-          %td= link_to "#{company.compagnia}", company_path(company)
-          -#%td= company.area
-          %td= company.provvigione
-          %td= company.autore
-          %td= company.aggiornamento
-          %td= company.canale_1
-          %td= company.canale_2
-          %td= company.interlocutore
-          -#%td= company.note_operative
-          -#%td#note_operative= link_to "Note Operative", company_path(company)
-          %td= company.portale
-          %td= company.premio_minimo
-          -#%td= company.scheda_condizioni
-          -#%td= company.questionari
-          -#%td= company.brochure
-          -#%td= company.nota_informativa
-          -#%td= company.created_at
-          -#%td= company.updated_at
+     - @selected_companies.each do |company|
+      %tr
+       %td= link_to "#{company.compagnia}", company_path(company)
+       -#%td= company.area
+       %td= company.provvigione
+       %td= company.autore
+       %td= company.aggiornamento
+       %td= company.canale_1
+       %td= company.canale_2
+       %td= company.interlocutore
+       -#%td= company.note_operative
+       -#%td#note_operative= link_to "Note Operative", company_path(company)
+       %td= company.portale
+       %td= company.premio_minimo
+       -#%td= company.scheda_condizioni
+       -#%td= company.questionari
+       -#%td= company.brochure
+       -#%td= company.nota_informativa
+       -#%td= company.created_at
+       -#%td= company.updated_at
 
+ -if can? :create, @company   
   %p= link_to 'Add new company', new_company_path(params)

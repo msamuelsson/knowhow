@@ -55,9 +55,10 @@
    %li
       <span class="detailsfont">Updated At</span>:
       = @company.updated_at
-
+%br
 %div#details_edit
-   = link_to 'Edit Company Information', edit_company_path(@company)
+   -if can? :update, @company    
+      = link_to 'Edit Company Information', edit_company_path(@company)
 
 %div#details_back
    = link_to 'Back to company list', companies_path(:area_filter => @company.area)  

@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-      
+      before_action :authenticate_user!
+  
       helper_method :sort_column, :sort_direction
       def index
          @all_areas = Company.distinct(:area).pluck(:area)
@@ -29,20 +30,27 @@ class CompaniesController < ApplicationController
 
       def new
         # default: render 'new' template
-        #@company = Company.new
+        @company = Company.new
         @selected_area = params[:area_filter] || session[:area_filter]
+        authorize! :create, @company
       end
 
       def create
         @company = Company.new(company_params)
         #@company = Company.create!(params[:company])
-        @company.save
-        flash[:notice] = "#{@company.compagnia} was successfully created."
-        redirect_to companies_path(:area_filter => @company.area)
+        if @company.save
+          flash[:notice] = "#{@company.compagnia} was successfully created."
+          redirect_to companies_path(:area_filter => @company.area)
+        else
+          #flash[:notice] = "Could not create company."
+          @selected_area = params[:area_filter] || session[:area_filter]
+          render 'new' # note, 'new' template can access @company's field values!
+        end  
       end
 
       def edit
         @company = Company.find(params[:id])
+        authorize! :update, @company
       end
 
       def update
@@ -51,9 +59,9 @@ class CompaniesController < ApplicationController
           flash[:notice] = "#{@company.compagnia} was successfully updated."
           redirect_to companies_path(:area_filter => @company.area)
         else
-          flash[:notice] = "#{@company.compagnia} was not successfully updated."
-          redirect_to companies_path(:area_filter => @company.area)
-          #render 'edit' # note, 'edit' template can access @movie's field values!
+          #flash[:notice] = "#{@company.compagnia} was not successfully updated."
+          #redirect_to companies_path(:area_filter => @company.area)
+          render 'edit' # note, 'edit' template can access @company's field values!
         end
       end
 
