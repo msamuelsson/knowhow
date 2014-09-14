@@ -8,7 +8,7 @@ class Ability
     if user.role == "author"
       can :manage, :all
     else
-      can :read, :all
+      can :manage, :all
     end
  
  
