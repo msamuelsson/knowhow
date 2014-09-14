@@ -16,7 +16,8 @@
 = text_field :company, :area,  :value => "#{@company.area}"
 
 = label :company, :autore, 'Autore'
-= text_field :company, 'autore'
+= text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}"
+-#= text_field :company, 'autore'
 
 = label :company, :provvigione, 'Provvigioni'
 = text_field :company, 'provvigione'
