@@ -16,7 +16,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color:F0FFF0;
+  background-color:white;
   color: DarkSlateGrey;
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
@@ -32,11 +32,12 @@ a {
 h1 {
   font-size: 150%;
   font-style: normal;
-  display: block;
+  /*display: block;*/
   width: 99%;
-  border-bottom: 2px solid DarkSlateGrey;
-  padding-left: 20pt;
+  /*border-bottom: 2px solid DarkSlateGrey;*/
+  padding-left: 5pt;
 }
+
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
@@ -80,10 +81,10 @@ h2 {
 }
 
 #notice {
-  background: yellow;
+  background: transparent;
   margin: 1em 0;
   padding: 4px;
-  color: red;
+  color: #2EA2CC;
   font-weight: bold;
   text-align: center;
 }
@@ -95,7 +96,9 @@ h2 {
   border: 2px solid red;
 }
 
-#header {
+
+
+#signedin {
   z-index: 1;
   position: relative;
   width: 150%;
@@ -105,13 +108,14 @@ h2 {
   background-color: transparent;
   margin-bottom: 10px;
   border-bottom: 2px solid DarkSlateGrey;
+  border-top: 2px solid DarkSlateGrey;
 }
 
 #left {
   position: relative;
   float: left;
   margin-top: 0.7px;
-  width: 11%;
+  width: 11.2%;
   height: 500px;
   background-color: transparent;
   margin-bottom: 10px;
@@ -119,6 +123,7 @@ h2 {
   font-weight: bold;
   border-right: 1px solid DarkSlateGrey;
   overflow: scroll; 
+  border-top: 2px solid DarkSlateGrey;
 }
 
 ul#area {
@@ -139,6 +144,7 @@ ul#area {
   font-size: 12px;
   padding-left: 8px;
   border-left: 1px solid DarkSlateGrey;
+  border-top: 2px solid DarkSlateGrey;
 }
 
 li.hilite {
@@ -198,31 +204,49 @@ select {
 
 #button {
     position: absolute;
-    left: 550px;
-    top: 400px; 
+    left: 11px;
+    top: 340px; 
 }
 
 input[type="submit"] {
     text-align: center;
-    color: buttontext;
+    /*color: buttontext;*/
    /* background-color: buttonface;*/
-    background-color: 20B2AA;
+    /*background-color: transparent;*/
     font-weight: bold;
     width: 140px;
     height: 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    background-color: #2EA2CC;
+    border-color: #0074A2;
+    font-family: "OpenSans";
+    font-style: normal;
+    font-size: 13px;
+    color: white;
 }
 
 
 #delete {
     position: absolute;
     left: 11px;
-    top: 450px;
+    top: 590px;
 }
 
 #back {
-    position: absolute;
-    left: 11px;
-    top: 500px;
+    /*position: absolute;
+    left: 14px;
+    top: 630px;*/
+    border-bottom: 2px solid DarkSlateGrey;
+    z-index: 1;
+    position: relative;
+    width: 150%;
+    margin-top: -7px;
+    padding: 0.4em;
+    height: 30px;
+    background-color: transparent;
+    margin-bottom: 10px;
 }
 
 #date {
@@ -243,13 +267,13 @@ ul#details {
 #details_edit {
     position: absolute;
     left: 40px;
-    top: 400px;
+    top: 550px;
 }
 
 #details_back {
     position: absolute;
     left: 40px;
-    top: 420px;
+    top: 520px;
 }
 
 form label, input {

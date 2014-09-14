@@ -1,4 +1,13 @@
-%h1 Edit Company
+%div#header
+ %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
+
+%div#signedin
+ -# if signed_in?
+  %p Welcome to Knowhow, #{current_user.email}
+ %p Welcome to Knowhow, #{request.env['REMOTE_USER']}
+ %p= link_to 'Back to company list', companies_path(:area_filter =>@company.area) 
+
+%h2 Edit Company
 
 %div#editcompany
  = form_tag company_path(@company), :method => :put do
@@ -12,6 +21,6 @@
  -#      :confirm => "Are you sure?"
  = button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
 
-%div#back
- = link_to 'Back to company list', companies_path(:area_filter => @company.area) 
+-#%div#back
+ -#= link_to 'Back to company list', companies_path(:area_filter => @company.area) 
 

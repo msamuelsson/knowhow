@@ -1,65 +1,75 @@
 -# in app/views/companies/show.html.haml
 
-%h1 Details 
--#%h2 Details about #{@company.compagnia}
+%div#header
+ %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
+
+%div#signedin
+ -# if signed_in?
+  %p Welcome to Knowhow, #{current_user.email}
+ %p Welcome to Knowhow, #{request.env['REMOTE_USER']}
+ %p= link_to 'Back to company list', companies_path(:area_filter => @company.area)  
+
+%h2 Details 
 
 %ul#details
-   %li
-      <span class="detailsfont">Company</span>:
-      = @company.compagnia
-   %li
-      <span class="detailsfont">Area</span>:
-      = @company.area
-   %li
-      <span class="detailsfont">Provvigioni</span>:
-      = @company.provvigione
-   %li
-      <span class="detailsfont">Autore</span>:
-      = @company.autore
-   %li
-      <span class="detailsfont">Ultimo Aggiornamento</span>:
-      = @company.aggiornamento
-   %li
-      <span class="detailsfont">Canale 1</span>:
-      = @company.canale_1
-   %li
-      <span class="detailsfont">Canale 2</span>:
-      = @company.canale_2
-   %li
-      <span class="detailsfont">Interlocutore</span>:
-      = @company.interlocutore
-   %li
-      <span class="detailsfont">Note Operative</span>:
-      = @company.note_operative
-   %li
-      <span class="detailsfont">Portale</span>:
-      = @company.portale
-   %li
-      <span class="detailsfont">Premio Minimo</span>:
-      = @company.premio_minimo
-   %li
-      <span class="detailsfont">Scheda Condizioni</span>:
-      = @company.scheda_condizioni
-   %li
-      <span class="detailsfont">Questionari Nostri</span>:
-      = @company.questionari
-   %li
-      <span class="detailsfont">Brochure ns o Compagnia</span>:
-      = @company.brochure
-   %li
-      <span class="detailsfont">Nota Informativa</span>:
-      = @company.nota_informativa
-   %li
-      <span class="detailsfont">Created At</span>:
-      = @company.created_at
-   %li
-      <span class="detailsfont">Updated At</span>:
-      = @company.updated_at
+ %li
+  <span class="detailsfont">Company</span>:
+  = @company.compagnia
+ %li
+  <span class="detailsfont">Area</span>:
+  = @company.area
+ %li
+  <span class="detailsfont">Provvigioni</span>:
+  = @company.provvigione
+ %li
+  <span class="detailsfont">Autore</span>:
+  = @company.autore
+ %li
+  <span class="detailsfont">Ultimo Aggiornamento</span>:
+  = @company.aggiornamento
+ %li
+  <span class="detailsfont">Canale 1</span>:
+  = @company.canale_1
+ %li
+  <span class="detailsfont">Canale 2</span>:
+  = @company.canale_2
+ %li
+  <span class="detailsfont">Interlocutore</span>:
+  = @company.interlocutore
+ %li
+  <span class="detailsfont">Note Operative</span>:
+  = @company.note_operative
+ %li
+  <span class="detailsfont">Portale</span>:
+  = @company.portale
+ %li
+  <span class="detailsfont">Premio Minimo</span>:
+  = @company.premio_minimo
+ %li
+  <span class="detailsfont">Scheda Condizioni</span>:
+  = @company.scheda_condizioni
+ %li
+  <span class="detailsfont">Questionari Nostri</span>:
+  = @company.questionari
+ %li
+  <span class="detailsfont">Brochure ns o Compagnia</span>:
+  = @company.brochure
+ %li
+  <span class="detailsfont">Nota Informativa</span>:
+  = @company.nota_informativa
+ %li
+  <span class="detailsfont">Created At</span>:
+  = @company.created_at
+ %li
+  <span class="detailsfont">Updated At</span>:
+  = @company.updated_at
+%br
 %br
 %div#details_edit
-   -if can? :update, @company    
-      = link_to 'Edit Company Information', edit_company_path(@company)
+ -if can? :update, @company    
+  = link_to 'Edit Company Information', edit_company_path(@company)
+  -#= button_to 'Edit Company Information', edit_company_path(@company) 
 
-%div#details_back
-   = link_to 'Back to company list', companies_path(:area_filter => @company.area)  
+-#%div#details_back
+ -#= link_to 'Back to company list', companies_path(:area_filter => @company.area)  
 

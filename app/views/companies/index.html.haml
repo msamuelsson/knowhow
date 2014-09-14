@@ -1,17 +1,21 @@
 -#  This file is app/views/companies/index.html.haml
 
-%h1 Welcome to knowhow
-
 %div#header
+ -#%h1=image_tag("https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png")
+ %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
+ 
+ 
+
+-#%div#signedin
  - if signed_in?
-  %p Signed in as #{current_user.email}
-  =link_to 'Sign out', destroy_user_session_path, :method => :delete
+  %p Welcome to Knowhow, #{current_user.email}
+  -#  =link_to 'Sign out', destroy_user_session_path, :method => :delete
  - elsif
   %p You are signed out!
   =link_to 'Sign Up', new_user_registration_path
   =link_to 'Sign In', new_user_session_path
-
- 
+%div#signedin
+ %p Welcome to Knowhow, #{request.env['REMOTE_USER']} 
 -#%li{:class => (@selected_area == 'Energy'? "hilite" : nil)}= link_to'Energy', companies_path(:area_filter => 'Energy')
 
 %div#left
