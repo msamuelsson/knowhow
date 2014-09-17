@@ -1,26 +1,22 @@
-%div#header
- %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
-
-%div#signedin
- -# if signed_in?
-  %p Welcome to Knowhow, #{current_user.email}
- %p Welcome to Knowhow, #{request.env['REMOTE_USER']}
- %p= link_to 'Back to company list', companies_path(:area_filter =>@company.area) 
+.nav
+  .container
+    .row
+      .col-md-5
+        -#%img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
+      .col-md-5
+        %p Welcome to <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
+      .col-md-2
+        %p= link_to 'Back to companies list', companies_path(:area_filter => @selected_area)
 
 %h2 Edit Company
 
-%div#editcompany
- = form_tag company_path(@company), :method => :put do
+= form_tag company_path(@company), :method => :put do
+  = render :partial => 'company_form'
 
-  = render :partial => 'editcompany_form'
+= button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
 
 
-  -#= submit_tag 'Update Company Info'
-%div#delete
- -# = link_to 'Delete Company', company_path(@company), :method=>:delete,
- -#      :confirm => "Are you sure?"
- = button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
+ 
 
--#%div#back
- -#= link_to 'Back to company list', companies_path(:area_filter => @company.area) 
+
 

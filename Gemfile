@@ -14,10 +14,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-# Use jquery as the JavaScript library
-group :assets do
-	gem 'jquery-rails'
-end
+# Use jquery as the JavaScript librar
+gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -54,3 +53,7 @@ gem 'devise'
 
 # Use CanCan for user authorization
 gem 'cancan'
+
+gem 'jquery-ui-rails'
+
+gem 'rails-i18n', '~> 4.0.0'

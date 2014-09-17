@@ -10,7 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-= require jquery
-= require jquery_ujs
-= require turbolinks
-= require_tree .
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree 
+//= require bootstrap
+//= require jquery-ui
+
+$(document).ready(function () {
+	$( "#company_aggiornamento" ).datepicker({ dateFormat: "yy-mm-dd", defaultDate: 0 })
+});
+
+
+//changeMonth: true, //this option for allowing user to select month
+//changeYear: true  //this option for allowing user to select from year range

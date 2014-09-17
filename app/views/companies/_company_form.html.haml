@@ -7,64 +7,77 @@
       - @company.errors.full_messages.each do |error|
         %li= error
 
+%table
+  %tr
+    %td= label :company, :compagnia, 'Compagnia'
+    %td= text_field :company, 'compagnia'
 
-= label :company, :compagnia, 'Compagnia'
-= text_field :company, 'compagnia'
+  %tr
+    %td= label :company, :area, 'Area'
+    - if controller.action_name == "edit"
+      %td= text_field :company, 'area'
+    - else
+      %td= text_field :company, :area,  :value => "#{@selected_area}"
 
--#= label :company, :area, 'Area'
--#= select :company, :area, Company.all_areas
-= label :company, :area, 'Area'
-= text_field :company, :area,  :value => "#{@selected_area}"
+  %tr
+    %td= label :company, :autore, 'Autore'
+    %td= text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}", :disabled => true
 
+  %tr
+    %td= label :company, :provvigione, 'Provvigioni'
+    %td= text_field :company, 'provvigione'
 
-= label :company, :autore, 'Autore'
-= text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}"
+  %tr
+    %td= label :company, :aggiornamento, 'Ultimo Aggiornamento'
+    %td= date_select :company, :aggiornamento, :max_years_allowed => 10
+    -#%td= text_field :company, :aggiornamento
+    -#, :id => "datepicker"
 
-= label :company, :provvigione, 'Provvigioni'
-= text_field :company, 'provvigione'
+  %tr
+    %td= label :company, :canale_1, 'Canale 1'
+    %td= text_field :company, 'canale_1'
 
-= label :company, :aggiornamento, 'Ultimo Aggiornamento'
-= date_select :company, :aggiornamento, :max_years_allowed => 10
+  %tr
+    %td= label :company, :canale_2, 'Canale 2'
+    %td= text_field :company, 'canale_2'
 
-= label :company, :canale_1, 'Canale 1'
-= text_field :company, 'canale_1'
+  %tr
+    %td= label :company, :interlocutore, 'Interlocutore'
+    %td= text_field :company, 'interlocutore'
 
-= label :company, :canale_2, 'Canale 2'
-= text_field :company, 'canale_2'
+  %tr
+    %td= label :company, :note_operative, 'Note Operative'
+    %td= text_field :company, 'note_operative'
 
-= label :company, :interlocutore, 'Interlocutore'
-= text_field :company, 'interlocutore'
+  %tr
+    %td= label :company, :portale, 'Portale'
+    -#%td= text_field :company, 'portale'
+    %td= check_box :company, 'portale', :class => "checkbox"
 
-= label :company, :note_operative, 'Note Operative'
-= text_field :company, 'note_operative'
+  %tr
+    %td= label :company, :premio_minimo, 'Premio Minimo'
+    %td= text_field :company, 'premio_minimo'
 
-= label :company, :portale, 'Portale'
-= text_field :company, 'portale'
+  %tr
+    %td= label :company, :scheda_condizioni, 'Scheda Condizioni'
+    %td= text_field :company, 'scheda_condizioni'
 
-= label :company, :premio_minimo, 'Premio Minimo'
-= text_field :company, 'premio_minimo'
+  %tr
+    %td= label :company, :questionari, 'Questionari Nostri'
+    %td= text_field :company, 'questionari'
 
-= label :company, :scheda_condizioni, 'Scheda Condizioni'
-= text_field :company, 'scheda_condizioni'
+  %tr
+    %td= label :company, :brochure, 'Brochure ns o Compagnia'
+    %td= text_field :company, 'brochure'
 
-= label :company, :questionari, 'Questionari Nostri'
-= text_field :company, 'questionari'
+  %tr
+    %td= label :company, :nota_informativa, 'Nota Informativa'
+    %td= text_field :company, 'nota_informativa'
 
-= label :company, :brochure, 'Brochure ns o Compagnia'
-= text_field :company, 'brochure'
-
-= label :company, :nota_informativa, 'Nota Informativa'
-= text_field :company, 'nota_informativa'
-
--#= label :company, :created_at, 'Created at'
--#= text_field :company, 'created_at'
-
--#= label :company, :updated_at, 'Updated at'
--#= text_field :company, 'updated_at'
-
-%div#button
-  = submit_tag 'Save'
-
-
-
-
+  %tr
+    %td
+      %div#button
+        = submit_tag 'Save'
+-#  - if controller.action_name == "edit"
+    %td
+      = button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'

@@ -1,59 +1,78 @@
 -#  This file is app/views/companies/index.html.haml
-%h1 All Companies
 
-= form_tag companies_path, :id => "areas_form", :method => :get do
-  Include:
-  - @all_areas.each do |area|
-    = area
-    = check_box_tag "areas[#{area}]", 1, if params[:areas]; params[:areas].include?(area); else true; end, :id => "areas_#{area}"
-    -#= check_box_tag "areas[#{area}]", 1, @selected_areas.include?(area), :id => "areas_#{area}"
-  = submit_tag 'Refresh', :id => "areas_submit"
+%div#header
+ -#%h1=image_tag("https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png")
+ %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
+ 
+ 
 
--# Radio buttons
+-#%div#signedin
+ - if signed_in?
+  %p Welcome to Knowhow, #{current_user.email}
+  -#  =link_to 'Sign out', destroy_user_session_path, :method => :delete
+ - elsif
+  %p You are signed out!
+  =link_to 'Sign Up', new_user_registration_path
+  =link_to 'Sign In', new_user_session_path
+%div#signedin
+ %p Welcome to Knowhow, #{request.env['REMOTE_USER']} 
+-#%li{:class => (@selected_area == 'Energy'? "hilite" : nil)}= link_to'Energy', companies_path(:area_filter => 'Energy')
+
 %div#left
-  = form_tag companies_path, :id => "areas_form", :method => :get do 
-    %p Select area
-    %div{align: "left"}
-    %br/
-    -#%input{checked: "checked", name: "area_filter", type: "radio", value: "Energy"}/
-    %input{name: "area_filter", type: "radio", value: "Energy"}/
-    Energy
-    %br
-    %input{name: "area_filter", type: "radio", value: "Technology"}/
-    Technology
-    %br
-    %input{name: "area_filter", type: "radio", value: "Liability"}/
-    Liability
-    %br
-    %input{name: "area_filter", type: "radio", value: "Cauzione"}/
-    Cauzione
-    %br
-    %br
-    %input{type: "submit" }/ 
+ %ul#area
+  - @all_areas.each do |area| 
+   %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
 
-%table#companies
+
+    
+
+
+%div#right
+ %table#companies
   %thead
-    %tr
-      %th Edit
-      %th Compagnia
-      %th Area
-      %th Provvigioni
-      %th Autore
-      %th Ultimo Aggiornamento
-      %th Canale 1
-      %th Canale 2
-      %th Interlocutore
+   %tr
+    %th= sortable "compagnia", "Compagnia"
+    -#%th{:class => (params[:sort] == 'compagnia'? "hilite" : nil)}= link_to "Compagnia", :sort => "compagnia"
+    -#%th Area
+    %th= sortable "provvigione", "Provvigioni"
+    -#%th{:class => (params[:sort] == 'provvigione'? "hilite" : nil)}= link_to "Provvigioni", :sort => "provvigione"
+    %th= sortable "autore", "Autore"
+    -#%th{:class => (params[:sort] == 'autore'? "hilite" : nil)}= link_to  "Autore", :sort => "autore"
+    %th= sortable "aggiornamento", "Ultimo Aggiornamento"
+    %th Canale 1
+    %th Canale 2
+    %th Interlocutore
+    -#%th Note Operative
+    %th Portale
+    %th Premio Minimo
+    -#%th Scheda Condizioni
+    -#%th Questionari Nostri
+    -#%th Brochure ns o Compagnia
+    -#%th Nota Informativa
+    -#%th Created At
+    -#%th Updated At
 
-  %tbody
-    - @companies.each do |company|
+    %tbody
+     - @selected_companies.each do |company|
       %tr
-        %td= link_to 'Edit', edit_company_path(company)
-        -#%td= link_to 'Edit', edit_company_path(company)
-        %td= company.compagnia
-        -#%td#more_info= link_to "#{company.compagnia}", company_path(company)
-        %td= company.area
-        %td= company.provvigione
-        %td= company.autore
-        %td= company.aggiornamento
+       %td= link_to "#{company.compagnia}", company_path(company)
+       -#%td= company.area
+       %td= company.provvigione
+       %td= company.autore
+       %td= company.aggiornamento
+       %td= company.canale_1
+       %td= company.canale_2
+       %td= company.interlocutore
+       -#%td= company.note_operative
+       -#%td#note_operative= link_to "Note Operative", company_path(company)
+       %td= company.portale
+       %td= company.premio_minimo
+       -#%td= company.scheda_condizioni
+       -#%td= company.questionari
+       -#%td= company.brochure
+       -#%td= company.nota_informativa
+       -#%td= company.created_at
+       -#%td= company.updated_at
 
-= link_to 'Add new company', new_company_path
+ -if can? :create, @company   
+  %p= link_to 'Add new company', new_company_path(params)
