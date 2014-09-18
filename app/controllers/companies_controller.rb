@@ -5,12 +5,12 @@ class CompaniesController < ApplicationController
       def index
          @all_areas = Company.distinct(:area).pluck(:area)
 
-         @selected_area = params[:area_filter] || session[:area_filter]
+         @selected_area = params[:area_filter] || session[:area_filter] || @all_areas[0]
          if params[:area_filter] != session[:area_filter]
            session[:area_filter] = @selected_area
            flash.keep
          end
-         @selected_companies = Company.where(:area => @selected_area).order(sort_column + ' ' + sort_direction)
+         @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
 
       end
 
@@ -81,7 +81,8 @@ class CompaniesController < ApplicationController
       
       def destroy
         @company = Company.find(params[:id])
-        @company.destroy
+        #@company.destroy
+        @company.update_attribute(:deleted,:true)
         flash[:notice] = "Company '#{@company.compagnia}' deleted."
         redirect_to companies_path(:area_filter => @company.area)
       end

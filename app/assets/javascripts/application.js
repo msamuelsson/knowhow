@@ -17,10 +17,7 @@
 //= require bootstrap
 //= require jquery-ui
 
-$(document).ready(function () {
-	$( "#company_aggiornamento" ).datepicker({ dateFormat: "yy-mm-dd", defaultDate: 0 })
-});
 
-
-//changeMonth: true, //this option for allowing user to select month
-//changeYear: true  //this option for allowing user to select from year range
+$(document).ready(function() {
+    $('#example').dataTable();
+} );
