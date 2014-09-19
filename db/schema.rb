@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918065310) do
+ActiveRecord::Schema.define(version: 20140919093000) do
 
   create_table "companies", force: true do |t|
     t.string   "compagnia"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20140918065310) do
     t.string   "canale_2"
     t.string   "interlocutore"
     t.text     "note_operative"
-    t.boolean  "portale"
     t.string   "premio_minimo"
     t.string   "scheda_condizioni"
     t.string   "questionari"
@@ -32,6 +31,8 @@ ActiveRecord::Schema.define(version: 20140918065310) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted"
+    t.text     "credenziali"
+    t.string   "portale"
   end
 
   create_table "users", force: true do |t|

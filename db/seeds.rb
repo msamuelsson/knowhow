@@ -1290,10 +1290,10 @@ end
 
 # Installation companies seeds
 
-more_companies = [{},
-]
+#more_companies = [{},
+#]
 
-more_companies.each do |company|
-                   Installation.create!(company)
-end
+#more_companies.each do |company|
+#                   Installation.create!(company)
+#end
 

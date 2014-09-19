@@ -6,7 +6,7 @@
    .col-md-6
     %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
    .col-md-6
-    %p Welcome to <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
+    %p Benvenuto in <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
 
 .jumbotron
  .container
@@ -14,7 +14,7 @@
    .col-md-2
     .area-list
      %ul.area
-      - @all_areas.each do |area| 
+      - @all_areas.sort.each do |area| 
        %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
    .col-md-10
     .company-table
@@ -23,10 +23,10 @@
        %tr
         %th= sortable "compagnia", "Compagnia"
         %th= sortable "provvigione", "Provvigioni"
-        %th= sortable "autore", "Autore"
+        -#%th= sortable "autore", "Autore"
         %th= sortable "aggiornamento", "Ultimo Aggiornamento"
         %th Canale 1
-        %th Canale 2
+        -#%th Canale 2
         %th Interlocutore
         %th Portale
         %th Premio Minimo
@@ -36,16 +36,22 @@
         %tr
          %td= link_to "#{company.compagnia}", company_path(company)
          %td= company.provvigione
-         %td= company.autore
+         -#%td= company.autore
          %td= company.aggiornamento
          %td= company.canale_1
-         %td= company.canale_2
+         -#%td= company.canale_2
          %td= company.interlocutore
-         %td= company.portale
+         %td= link_to "#{company.portale}", "#{company.portale}"
          %td= company.premio_minimo
-     -if can? :create, @company   
+     -#-if can? :create, @company   
       %p= link_to 'Add new company', new_company_path(params)
-
+  .row
+   .col-md-2 
+   .col-md-10
+    -if can? :create, @company   
+     %tr
+      %td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+      
     
 
 

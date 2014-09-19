@@ -44,15 +44,19 @@
   %tr
     %td= label :company, :interlocutore, 'Interlocutore'
     %td= text_field :company, 'interlocutore'
-
+ 
   %tr
     %td= label :company, :note_operative, 'Note Operative'
-    %td= text_field :company, 'note_operative'
+    %td= text_area :company, 'note_operative'
 
   %tr
     %td= label :company, :portale, 'Portale'
-    -#%td= text_field :company, 'portale'
-    %td= check_box :company, 'portale', :class => "checkbox"
+    %td= url_field :company, 'portale'
+
+  %tr
+    %td= label :company, :credenziali, 'Credenziali'
+    %td= text_area :company, 'credenziali'
+    
 
   %tr
     %td= label :company, :premio_minimo, 'Premio Minimo'
@@ -60,24 +64,30 @@
 
   %tr
     %td= label :company, :scheda_condizioni, 'Scheda Condizioni'
-    %td= text_field :company, 'scheda_condizioni'
+    -#%td= text_field :company, 'scheda_condizioni'
+    %td= file_field :company, 'scheda_condizioni'
 
   %tr
     %td= label :company, :questionari, 'Questionari Nostri'
-    %td= text_field :company, 'questionari'
+    %td= file_field :company, 'questionari'
 
   %tr
     %td= label :company, :brochure, 'Brochure ns o Compagnia'
-    %td= text_field :company, 'brochure'
+    %td= file_field :company, 'brochure'
 
   %tr
     %td= label :company, :nota_informativa, 'Nota Informativa'
-    %td= text_field :company, 'nota_informativa'
+    %td= file_field :company, 'nota_informativa'
 
   %tr
     %td
       %div#button
-        = submit_tag 'Save'
+        = submit_tag 'Salva'
+
+-#  %tr
+    %td
+      %div#button
+        = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
 -#  - if controller.action_name == "edit"
     %td
       = button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'

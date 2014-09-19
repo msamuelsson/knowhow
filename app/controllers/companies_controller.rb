@@ -4,8 +4,9 @@ class CompaniesController < ApplicationController
       helper_method :sort_column, :sort_direction
       def index
          @all_areas = Company.distinct(:area).pluck(:area)
+         #@all_areas = Company.select(:area).distinct
 
-         @selected_area = params[:area_filter] || session[:area_filter] || @all_areas[0]
+         @selected_area = params[:area_filter] || session[:area_filter] || @all_areas.sort[0]
          if params[:area_filter] != session[:area_filter]
            session[:area_filter] = @selected_area
            flash.keep

@@ -4,15 +4,13 @@
       .col-md-5
         %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
       .col-md-5
-        %p Welcome to <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
+        %p Benvenuto in <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
       .col-md-2
         %p= link_to 'Back to companies list', companies_path(:area_filter => @selected_area)
 
-%h2 Add new company
-
+%h2 Nuova Compagnia
 
 = form_tag companies_path(@selected_area), :method => :post do
   = render :partial => 'company_form'
 
-
-
+= button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
