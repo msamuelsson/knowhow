@@ -15,12 +15,16 @@ default: &default
   pool: 5
   username: root
   password:
+  # Mac OS X
   socket: /tmp/mysql.sock
-#  socket: /var/run/mysqld/mysqld.sock
+  # Debian 7 Linux
+  # socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
   database: knowhow_development
+  # Debian 7 Linux
+  # password: SEGRETISSIMO
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -51,5 +55,5 @@ test:
 production:
   <<: *default
   database: knowhow_production
-  username: knowhow
-  password: <%= ENV['KNOWHOW_DATABASE_PASSWORD'] %>
+#  username: knowhow
+#  password: <%= ENV['KNOWHOW_DATABASE_PASSWORD'] %>
