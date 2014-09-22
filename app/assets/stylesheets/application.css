@@ -50,18 +50,6 @@ h2 {
 
 
 /* General table CSS */
-table {
-    border: 1px solid DarkSlateGrey;
-}
-    
-table td.hilite {
-    /*background-color: #009ac4;*/
-    background-color: #DAECFF; /*#FF00CC; /*pink*/
-}
-
-table tr:hover td {
-    background-color: #b2e0ef;
-}
 
 table a {
     color: 0066CC; /*#009ac4; /*links*/
@@ -80,22 +68,45 @@ table th {
 /*area-table specific CSS*/
 
 .area-table {
-    
+    border: 1px solid DarkSlateGrey;
+}
+
+.area-table td.hilite {
+    background-color: #DAECFF; 
+}
+
+.area-table tr:hover td {
+    background-color: #b2e0ef;
 }
 
 /*company-table specific CSS*/
 
-.company-table {
+.company-table table{
+    border: 1px solid DarkSlateGrey;
 }
+
+.company-table label {
+    padding-top: 5px;
+}
+
 .company-table tr.hilite td {
-  background-color:  #DAECFF; /*#FF00CC;*/
+  background-color:  #DAECFF; 
+}
+
+.company-table tr:hover td {
+    background-color: #b2e0ef;
 }
 
 /*details-table specific CSS*/
 
 .details-table {
-    color: #DAECFF;
+    border: 1px solid DarkSlateGrey;
 }
+
+.details-table tr:hover td {
+    background-color: #b2e0ef;
+}
+
 
 #Notice {
   background: transparent;

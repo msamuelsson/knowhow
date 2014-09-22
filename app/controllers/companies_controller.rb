@@ -17,12 +17,7 @@ class CompaniesController < ApplicationController
          @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
          @selected_company_id = params[:company_id] || session[:company_id] || @selected_companies[0].id
          @selected_company = Company.find(@selected_company_id)
-         #if params[:company_filter] != session[:company_filter]
-           #session[:company_filter] = @selected_company
-           #flash.keep
-         #end
-         #@company = Company.where(:compagnia => @selected_company)
-
+         
       end
 
       def new
@@ -40,7 +35,7 @@ class CompaniesController < ApplicationController
           #redirect_to companies_path(:area_filter => @company.area)
           redirect_to companies_path(:area_filter => @company.area, :company_id => @company.id)
         else
-          #flash[:notice] = "Could not create company."
+          #flash[:notice] = "Creazione compagnia fallita."
           @selected_area = params[:area_filter] || session[:area_filter]
           render 'new' # note, 'new' template can access @company's field values!
         end  
@@ -81,7 +76,7 @@ class CompaniesController < ApplicationController
         @company = Company.find(params[:id])
         #@company.destroy
         @company.update_attribute(:deleted,:true)
-        flash[:notice] = "Company '#{@company.compagnia}' deleted."
+        flash[:notice] = "Compagnia '#{@company.compagnia}' eliminata."
         redirect_to companies_path(:area_filter => @company.area)
       end
 
