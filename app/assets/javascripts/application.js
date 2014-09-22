@@ -12,12 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree 
-//= require bootstrap
 //= require jquery-ui
+//= require dataTables/jquery.dataTables
+//= require jquery.turbolinks
+//= require turbolinks
+//= require bootstrap
+//= require_tree .
 
 
-$(document).ready(function() {
-    $('#example').dataTable();
-} );
+

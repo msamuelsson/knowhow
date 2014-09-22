@@ -10,9 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree 
- *= require_self
+ *= require_self 
  *= require bootstrap
+ *= require dataTables/jquery.dataTables
+ *= require_tree 
  */
 
 html, body {
@@ -24,55 +25,10 @@ html, body {
   font-size: 10pt;
 }
 
-a {
-  background: transparent;
-  color: black;
-  Text-decoration: underline;
-  font-weight: normal;
-  font-size: 0.9em;
-}
-
-h1 {
-  font-size: 150%;
-  font-style: normal;
-  /*display: block;*/
-  width: 90%;
-  /*border-bottom: 2px solid DarkSlateGrey;*/
-  padding-left: 5pt;
-}
-
-h1.title {
-  margin: 0 0 1em;
-  padding: 10px;
-  background-color: orange;
-  color: red;
-  border-bottom: 4px solid gold;
-  font-size: 2em;
-  font-style: normal;
-}
-
-h2 {
-  color:black;
-  font-size: 15px;
-  font-style: normal;
-  display: block;
-  width: 100%;
-  padding-left: 10px;
-  font-weight: bold;
-  color: #009ac4;
-}
-
-/* nav */
-
-.nav {
+.header {
+    margin-bottom: 50px;
+    padding-left: 50px;
     border-bottom: 1px solid DarkSlateGrey;
-}
-
-.nav p {
-    font-size: 15px;
-    font-weight: normal;
-    padding: 10px 10px;
-    /*text-transform: uppercase;*/
 }
 
 .knowhow {
@@ -81,150 +37,67 @@ h2 {
     color: #009ac4;
 }
 
-/* Jumbotron */
+h2 {
+  /*color:black;*/
+  font-size: 30px;
+  font-style: normal;
+  display: block;
+  width: 100%;
+  padding-left: 10px;
+  font-weight: bold;
+  color: #009ac4;
+}
 
-.jumbotron {
+
+/* General table CSS */
+table {
     border: 1px solid DarkSlateGrey;
-    margin-top: 20px;
-    padding-left: 0px;
-    padding-right: 0px;
 }
-
-.jumbotron .container {
-  position: relative;
-  top: 0px;
-  left: 0px;
-}
-
-.jumbotron .container .col-md-2{
-  border-right: 1px solid DarkSlateGrey;
-}
-
-
-.jumbotron .container .col-md-10 p {
-    font-size: 13px;
-    font-weight: normal;
-    color: #009ac4;
-    padding-top: 20px;
     
+table td.hilite {
+    /*background-color: #009ac4;*/
+    background-color: #DAECFF; /*#FF00CC; /*pink*/
 }
 
-ul.area {
-    list-style: none;
-    text-align: left;
-    padding-left: 0pt;
-}
-
-ul.area li {
-    padding: 1px;
-}
-
-li.hilite {
-    background-color: #009ac4;
-}
-
-li:hover {
+table tr:hover td {
     background-color: #b2e0ef;
 }
 
-table.companies {
-  /*margin: 10px;*/
-  border-collapse: collapse;
-  width: 100%;
-  /*border-bottom: 2px solid DarkSlateGrey;*/
-  /*border-right: 1px solid DarkSlateGrey;*/
-  background: transparent;
-  /*overflow: scroll;*/
+table a {
+    color: 0066CC; /*#009ac4; /*links*/
+    font-size: 0.9em;
 }
 
-table.companies th {
-  padding: 1px;
-  text-align: left;
-  font-size:0.8em;
-  color: black
-  font-style: bold;
-  border-bottom: 1px solid DarkSlateGrey;
-  /*padding-bottom: 10px;*/
-}
-.company-table th /*{
-  padding: 1px;
-  text-align: left;
-  font-size:0.8em;
-  color: black
-  font-style: bold;
-  border-bottom: 1px solid DarkSlateGrey;
-  /*padding-bottom: 10px;*/
+table td {
+    text-align: left;
+    font-size: 0.8em;
 }
 
-.company-table th {
-    data-align: left;
-    data-sortable: true;
+table th {
+    font-size: 0.8em;
 }
 
-table.companies td {
-  padding: 1px;
-  text-align: left;
-  font-size:0.8em;
-  color: black;
-  font-style: normal;
+/*area-table specific CSS*/
+
+.area-table {
+    
 }
 
-.company-table td /*{
-  padding: 1px;
-  text-align: left;
-  font-size:0.8em;
-  color: black;
-  font-style: normal;
-}*/
-.company-table p a {
-    color: #009ac4;
-    font-weight: bold;
+/*company-table specific CSS*/
+
+.company-table {
+}
+.company-table tr.hilite td {
+  background-color:  #DAECFF; /*#FF00CC;*/
 }
 
-table.companies tr:hover {
-  background-color: #b2e0ef;  
+/*details-table specific CSS*/
+
+.details-table {
+    color: #DAECFF;
 }
 
-.company-table tr:hover {
-  background-color: #b2e0ef;  
-}
-
-table.companies tr.hilite {
-    background-color: #009ac4;
-}
-
-table.companies th .current {
-    padding-right: 12px;
-    background-repeat: no-repeat;
-    background-position: right center;
-    font-weight: bold;
-}
-
-.company-table th .current {
-    padding-right: 12px;
-    background-repeat: no-repeat;
-    background-position: right center;
-    font-weight: bold;
-}
-
-
-table.companies th .asc {
-    background-image: url(up_arrow.gif);
-}
-
-table.companies th .desc {
-    background-image: url(down_arrow.gif);
-}
-
-.company-table th .asc {
-    background-image: url(up_arrow.gif);
-}
-
-.company-table th .desc {
-    background-image: url(down_arrow.gif);
-}
-
-#notice {
+#Notice {
   background: transparent;
   margin: 1em 0;
   padding: 4px;
@@ -263,16 +136,6 @@ form input {
    width: 20px;
 }
 
-
-/*Select {
-    float: left;
-    width: 6.3em;
-    margin-right: 0.5em;
-    padding-left: 10px;
-    margin-top: 0.7em;
-}*/
-
-
 #button {
     left: 11px; 
 }
@@ -296,11 +159,7 @@ input[type="submit"] {
     color: white;
 }
 
-#date {
-    position: absolute;
-    left: 1px;
-    top: 250px;
-}
+/* show view*/
 
 ul#details {
     list-style: none;
@@ -323,28 +182,3 @@ ul#details {
     top: 520px;
 }
 
-/* Authentication CSS
-#email {
-    padding-left: 10px;
-}
-
-#password {
-    padding-left: 10px;
-    margin-top: 3em;
-}
-
-#remember {
-    margin-top: 5em;
-    float: left;
-}
-
-
-#submit {
-    padding-left: 10px;
-    margin-top: 2em;
-}
-
-#links {
-    padding-left: 10px;
-    margin-top: 20em;
-}

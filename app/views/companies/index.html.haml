@@ -1,30 +1,36 @@
 -#  This file is app/views/companies/index.html.haml
+.header
+ =render :partial => 'header_form'
 
-.nav
- .container
-  .row
-   .col-md-6
-    %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
-   .col-md-6
-    %p Benvenuto in <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
-
-.jumbotron
+.table-content
  .container
   .row
    .col-md-2
-    .area-list
-     %ul.area
-      - @all_areas.sort.each do |area| 
-       %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
-   .col-md-10
-    .company-table
-     %table.companies
+    .area-table
+     -#%table.area
+     %table#area.compact
       %thead
        %tr
-        %th= sortable "compagnia", "Compagnia"
-        %th= sortable "provvigione", "Provvigioni"
+        %th Area
+
+      %tbody 
+       - @all_areas.sort.each do |area| 
+        %tr
+         %td{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
+         
+   .col-md-7
+    .company-table
+     -#%table.companies{:class => "table table-hover"}
+     %table#company.stripe.compact.hover
+      %thead
+       %tr
+        -#%th= sortable "compagnia", "Compagnia"
+        %th Compagnia
+        -#%th= sortable "provvigione", "Provvigioni"
+        %th Provvigioni
         -#%th= sortable "autore", "Autore"
-        %th= sortable "aggiornamento", "Ultimo Aggiornamento"
+        -#%th= sortable "aggiornamento", "Ultimo Aggiornamento"
+        %th  Ultimo Aggiornamento
         %th Canale 1
         -#%th Canale 2
         %th Interlocutore
@@ -33,8 +39,9 @@
 
       %tbody
        - @selected_companies.each do |company|
-        %tr
-         %td= link_to "#{company.compagnia}", company_path(company)
+        %tr{:class => (@selected_company_id == "#{company.id}"?"hilite" : nil)}
+         -#%td{:class => (@selected_company_id == "#{company.id}"?"hilite" : nil)}= link_to "#{company.compagnia}", companies_path(:company_id => "#{company.id}")
+         %td= link_to "#{company.compagnia}", companies_path(:company_id => "#{company.id}")
          %td= company.provvigione
          -#%td= company.autore
          %td= company.aggiornamento
@@ -43,20 +50,78 @@
          %td= company.interlocutore
          %td= link_to "#{company.portale}", "#{company.portale}"
          %td= company.premio_minimo
-     -#-if can? :create, @company   
-      %p= link_to 'Add new company', new_company_path(params)
-  .row
-   .col-md-2 
-   .col-md-10
+
     -if can? :create, @company   
      %tr
-      %td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
-      
-    
+      -#%td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+   .col-md-3
+    .details-table
+     -#%table.detail
+     %table#details.compact
+      %thead
+       %tr
+        %th{:colspan => 2}='Details'
+       
+     
 
-
-
-
-    
-
- 
+      %tbody 
+       %tr
+        %td='Compagnia:' 
+        %td= @selected_company.compagnia
+       %tr
+        %td='Area:' 
+        %td= @selected_company.area  
+       %tr       
+        %td='Provvigioni:'
+        %td= @selected_company.provvigione
+       %tr
+        %td='Autore:'
+        %td= @selected_company.autore
+       %tr
+        %td='Ultimo Aggiornamento:'
+        %td= @selected_company.aggiornamento
+       %tr
+        %td='Canale 1:'
+        %td= @selected_company.canale_1
+       %tr
+        %td='Canale 2:'
+        %td= @selected_company.canale_2
+       %tr
+        %td='Interlocutore:'
+        %td= @selected_company.interlocutore
+       %tr
+        %td='Note Operative:'
+        %td= @selected_company.note_operative
+       %tr
+        %td='Portale:'
+        %td= @selected_company.portale
+       %tr
+        %td='Credenziali:'
+        %td= @selected_company.credenziali
+       %tr
+        %td='Premio Minimo:'
+        %td= @selected_company.premio_minimo
+       %tr
+        %td='Scheda Condizioni:'
+        %td= @selected_company.scheda_condizioni
+       %tr
+        %td='Questionari Nostri:'
+        %td= @selected_company.questionari
+       %tr
+        %td='Brochure ns o Compagnia:'
+        %td= @selected_company.brochure
+       %tr
+        %td='Nota Informativa:'
+        %td= @selected_company.nota_informativa
+    -if can? :create, @company   
+     %tr
+      -#%td= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
+  
+.footer
+ .container
+  .row
+   .col-md-2
+   .col-md-7.text-right
+    %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+   .col-md-3.text-right
+    %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
