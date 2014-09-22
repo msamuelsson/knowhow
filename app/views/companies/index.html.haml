@@ -7,7 +7,8 @@
   .row
    .col-md-2
     .area-table
-     %table.area
+     -#%table.area
+     %table#area.compact
       %thead
        %tr
         %th Area
@@ -17,7 +18,7 @@
         %tr
          %td{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
          
-   .col-md-8
+   .col-md-7
     .company-table
      -#%table.companies{:class => "table table-hover"}
      %table#company.stripe.compact.hover
@@ -52,14 +53,16 @@
 
     -if can? :create, @company   
      %tr
-      %td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
-   .col-md-2
+      -#%td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+   .col-md-3
     .details-table
-     %table.detail
+     -#%table.detail
+     %table#details.compact
       %thead
        %tr
-        %th 
-        %th 
+        %th{:colspan => 2}='Details'
+       
+     
 
       %tbody 
        %tr
@@ -112,58 +115,13 @@
         %td= @selected_company.nota_informativa
     -if can? :create, @company   
      %tr
-      %td= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
+      -#%td= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
   
-
-.jumbotron
+.footer
  .container
   .row
    .col-md-2
-    .area-list
-     %ul.area
-      - @all_areas.sort.each do |area| 
-       %li{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
-   .col-md-10
-    .company-table
-     %table.companies
-      %thead
-       %tr
-        %th= sortable "compagnia", "Compagnia"
-        %th= sortable "provvigione", "Provvigioni"
-        -#%th= sortable "autore", "Autore"
-        %th= sortable "aggiornamento", "Ultimo Aggiornamento"
-        %th Canale 1
-        -#%th Canale 2
-        %th Interlocutore
-        %th Portale
-        %th Premio Minimo
-
-      %tbody
-       - @selected_companies.each do |company|
-        %tr
-         %td= link_to "#{company.compagnia}", company_path(company)
-         %td= company.provvigione
-         -#%td= company.autore
-         %td= company.aggiornamento
-         %td= company.canale_1
-         -#%td= company.canale_2
-         %td= company.interlocutore
-         %td= link_to "#{company.portale}", "#{company.portale}"
-         %td= company.premio_minimo
-     -#-if can? :create, @company   
-      %p= link_to 'Add new company', new_company_path(params)
-  .row
-   .col-md-2 
-   .col-md-10
-    -if can? :create, @company   
-     %tr
-      %td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
-      
-    
-
-
-
-
-    
-
- 
+   .col-md-7.text-right
+    %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+   .col-md-3.text-right
+    %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
