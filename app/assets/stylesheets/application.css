@@ -10,9 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree 
- *= require_self
+ *= require_self 
+ *= require dataTables/jquery.dataTables
  *= require bootstrap
+ *= require_tree 
  */
 
 html, body {
@@ -62,18 +63,6 @@ h2 {
   color: #009ac4;
 }
 
-/* nav */
-
-.nav {
-    border-bottom: 1px solid DarkSlateGrey;
-}
-
-.nav p {
-    font-size: 15px;
-    font-weight: normal;
-    padding: 10px 10px;
-    /*text-transform: uppercase;*/
-}
 
 .knowhow {
     font-weight: bold;
@@ -119,10 +108,18 @@ ul.area li {
     padding: 1px;
 }
 
-li.hilite {
+ul.area li.hilite {
+    background-color: #009ac4;
+}
+/* NEW CSS */
+table td.hilite {
     background-color: #009ac4;
 }
 
+table tr:hover {
+    background-color: #b2e0ef; 
+}
+/*_________________*/
 li:hover {
     background-color: #b2e0ef;
 }
@@ -168,14 +165,14 @@ table.companies td {
   color: black;
   font-style: normal;
 }
-
+*/
 .company-table td /*{
   padding: 1px;
   text-align: left;
   font-size:0.8em;
   color: black;
   font-style: normal;
-}*/
+
 .company-table p a {
     color: #009ac4;
     font-weight: bold;
@@ -263,16 +260,6 @@ form input {
    width: 20px;
 }
 
-
-/*Select {
-    float: left;
-    width: 6.3em;
-    margin-right: 0.5em;
-    padding-left: 10px;
-    margin-top: 0.7em;
-}*/
-
-
 #button {
     left: 11px; 
 }
@@ -296,11 +283,7 @@ input[type="submit"] {
     color: white;
 }
 
-#date {
-    position: absolute;
-    left: 1px;
-    top: 250px;
-}
+/* show view*/
 
 ul#details {
     list-style: none;
@@ -323,28 +306,3 @@ ul#details {
     top: 520px;
 }
 
-/* Authentication CSS
-#email {
-    padding-left: 10px;
-}
-
-#password {
-    padding-left: 10px;
-    margin-top: 3em;
-}
-
-#remember {
-    margin-top: 5em;
-    float: left;
-}
-
-
-#submit {
-    padding-left: 10px;
-    margin-top: 2em;
-}
-
-#links {
-    padding-left: 10px;
-    margin-top: 20em;
-}

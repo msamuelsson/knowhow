@@ -1,0 +1,4 @@
+jQuery ->
+  $('#company').dataTable()
+
+

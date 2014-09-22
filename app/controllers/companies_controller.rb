@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
       helper_method :sort_column, :sort_direction
       def index
          @all_areas = Company.distinct(:area).pluck(:area)
-         #@all_areas = Company.select(:area).distinct
+       
 
          @selected_area = params[:area_filter] || session[:area_filter] || @all_areas.sort[0]
          if params[:area_filter] != session[:area_filter]
@@ -12,22 +12,15 @@ class CompaniesController < ApplicationController
            flash.keep
          end
          @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
+         @selected_company_id = params[:company_id] || session[:company_id] || @selected_companies[0].id
+         @selected_company = Company.find(@selected_company_id)
+         #if params[:company_filter] != session[:company_filter]
+           #session[:company_filter] = @selected_company
+           #flash.keep
+         #end
+         #@company = Company.where(:compagnia => @selected_company)
 
       end
-
-      #def index
-          #@all_areas = Company.all_areas
-          #@selected_area = params[:area_filter] || session[:area_filter]
-          #sort = params[:sort] || session[:sort]
-    
-          #if params[:sort] != session[:sort] or params[:area_filter] != session[:area_filter]
-            #session[:sort] = sort
-            #session[:area_filter] = @selected_area
-            #flash.keep
-            #redirect_to :sort => sort, :area_filter => @selected_area and return
-          #end
-          #@selected_companies = Company.where(:area => @selected_area).order(sort)
-      #end
 
       def new
         # default: render 'new' template
@@ -90,7 +83,7 @@ class CompaniesController < ApplicationController
 
       private
         def company_params
-          params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :premio_minimo, :scheda_condizioni, :questionari, :brochure, :nota_informativa, :created_at, :updated_at)
+          params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionari, :brochure, :nota_informativa, :created_at, :updated_at)
         end
 
       private

@@ -1,12 +1,13 @@
 .nav
   .container
     .row
-      .col-md-5
-        %img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
-      .col-md-5
-        %p Benvenuto in <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
-      .col-md-2
-        %p= link_to 'Back to companies list', companies_path(:area_filter => @selected_area)
+      .col-md-6
+        = render :partial => 'logo_form'
+        -#%img{:src =>"https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}
+      .col-md-6
+        = render :partial => 'benvenuto_form'
+        -#%p Benvenuto in <span class="knowhow">Knowhow</span>, #{request.env['REMOTE_USER']} 
+        -#%p= link_to 'Back to companies list', companies_path(:area_filter => @selected_area)
 
 %h2 Nuova Compagnia
 
