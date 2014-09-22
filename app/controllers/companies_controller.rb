@@ -3,10 +3,13 @@ class CompaniesController < ApplicationController
   
       helper_method :sort_column, :sort_direction
       def index
-         @all_areas = Company.distinct(:area).pluck(:area)
+         @all_areas = Company.where(:deleted => false || nil).distinct(:area).pluck(:area)
        
 
          @selected_area = params[:area_filter] || session[:area_filter] || @all_areas.sort[0]
+	 if Company.where(:area => @selected_area, :deleted => false || nil).empty? 
+           @selected_area = @all_areas.sort[0]
+	 end
          if params[:area_filter] != session[:area_filter]
            session[:area_filter] = @selected_area
            flash.keep
@@ -33,8 +36,9 @@ class CompaniesController < ApplicationController
         @company = Company.new(company_params)
         #@company = Company.create!(params[:company])
         if @company.save
-          flash[:notice] = "#{@company.compagnia} was successfully created."
-          redirect_to companies_path(:area_filter => @company.area)
+          flash[:notice] = "#{@company.compagnia} creata."
+          #redirect_to companies_path(:area_filter => @company.area)
+          redirect_to companies_path(:area_filter => @company.area, :company_id => @company.id)
         else
           #flash[:notice] = "Could not create company."
           @selected_area = params[:area_filter] || session[:area_filter]
@@ -50,8 +54,8 @@ class CompaniesController < ApplicationController
       def update
         @company = Company.find params[:id]
         if @company.update_attributes(company_params)
-          flash[:notice] = "#{@company.compagnia} was successfully updated."
-          redirect_to companies_path(:area_filter => @company.area)
+          flash[:notice] = "#{@company.compagnia} aggiornata."
+          redirect_to companies_path(:area_filter => @company.area, :company_id => @company.id)
         else
           #flash[:notice] = "#{@company.compagnia} was not successfully updated."
           #redirect_to companies_path(:area_filter => @company.area)

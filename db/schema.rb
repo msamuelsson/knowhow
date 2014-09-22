@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919093000) do
+ActiveRecord::Schema.define(version: 20140922132331) do
 
   create_table "companies", force: true do |t|
     t.string   "compagnia"
     t.string   "area"
-    t.decimal  "provvigione",       precision: 4, scale: 2
+    t.decimal  "provvigione",                    precision: 4, scale: 2
     t.date     "aggiornamento"
     t.string   "autore"
     t.string   "canale_1"
@@ -24,15 +24,27 @@ ActiveRecord::Schema.define(version: 20140919093000) do
     t.string   "interlocutore"
     t.text     "note_operative"
     t.string   "premio_minimo"
-    t.string   "scheda_condizioni"
-    t.string   "questionari"
-    t.string   "brochure"
-    t.text     "nota_informativa"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted"
     t.text     "credenziali"
     t.string   "portale"
+    t.string   "nota_informativa_file_name"
+    t.string   "nota_informativa_content_type"
+    t.integer  "nota_informativa_file_size"
+    t.datetime "nota_informativa_updated_at"
+    t.string   "scheda_condizioni_file_name"
+    t.string   "scheda_condizioni_content_type"
+    t.integer  "scheda_condizioni_file_size"
+    t.datetime "scheda_condizioni_updated_at"
+    t.string   "questionari_file_name"
+    t.string   "questionari_content_type"
+    t.integer  "questionari_file_size"
+    t.datetime "questionari_updated_at"
+    t.string   "brochure_file_name"
+    t.string   "brochure_content_type"
+    t.integer  "brochure_file_size"
+    t.datetime "brochure_updated_at"
   end
 
   create_table "users", force: true do |t|

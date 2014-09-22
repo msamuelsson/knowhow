@@ -7,7 +7,6 @@
   .row
    .col-md-2
     .area-table
-     -#%table.area
      %table#area.compact
       %thead
        %tr
@@ -20,19 +19,13 @@
          
    .col-md-7
     .company-table
-     -#%table.companies{:class => "table table-hover"}
      %table#company.stripe.compact.hover
       %thead
        %tr
-        -#%th= sortable "compagnia", "Compagnia"
         %th Compagnia
-        -#%th= sortable "provvigione", "Provvigioni"
         %th Provvigioni
-        -#%th= sortable "autore", "Autore"
-        -#%th= sortable "aggiornamento", "Ultimo Aggiornamento"
         %th  Ultimo Aggiornamento
         %th Canale 1
-        -#%th Canale 2
         %th Interlocutore
         %th Portale
         %th Premio Minimo
@@ -40,23 +33,16 @@
       %tbody
        - @selected_companies.each do |company|
         %tr{:class => (@selected_company_id == "#{company.id}"?"hilite" : nil)}
-         -#%td{:class => (@selected_company_id == "#{company.id}"?"hilite" : nil)}= link_to "#{company.compagnia}", companies_path(:company_id => "#{company.id}")
          %td= link_to "#{company.compagnia}", companies_path(:company_id => "#{company.id}")
          %td= company.provvigione
-         -#%td= company.autore
          %td= company.aggiornamento
          %td= company.canale_1
-         -#%td= company.canale_2
          %td= company.interlocutore
          %td= link_to "#{company.portale}", "#{company.portale}"
          %td= company.premio_minimo
 
-    -if can? :create, @company   
-     %tr
-      -#%td= button_to 'Nuova compagnia', new_company_path(params), :method => :get
    .col-md-3
     .details-table
-     -#%table.detail
      %table#details.compact
       %thead
        %tr
@@ -103,19 +89,16 @@
         %td= @selected_company.premio_minimo
        %tr
         %td='Scheda Condizioni:'
-        %td= @selected_company.scheda_condizioni
+        %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url
        %tr
         %td='Questionari Nostri:'
-        %td= @selected_company.questionari
+        %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url
        %tr
         %td='Brochure ns o Compagnia:'
-        %td= @selected_company.brochure
+        %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url
        %tr
         %td='Nota Informativa:'
-        %td= @selected_company.nota_informativa
-    -if can? :create, @company   
-     %tr
-      -#%td= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
+        %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url
   
 .footer
  .container

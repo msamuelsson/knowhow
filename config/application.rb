@@ -21,5 +21,6 @@ module Knowhow
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.paperclip_defaults = {:url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename", :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename", :default_url => "", :default_path => ""}
   end
 end

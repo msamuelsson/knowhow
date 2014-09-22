@@ -62,3 +62,7 @@ gem 'rails-i18n', '~> 4.0.0'
 
 # Use DataTables for tables
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+
+gem "paperclip", "~> 4.2"
+
+gem "sprockets-rails"
