@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
          end
          @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
          @selected_company_id = params[:company_id] || session[:company_id] || @selected_companies[0].id
-	 if Company.where(:id => @selected_company_id, :deleted => false || nil).empty? 
+	 if Company.where(:area => @selected_area, :id => @selected_company_id, :deleted => false || nil).empty? 
            @selected_company_id = @selected_companies[0].id
 	 end
          if params[:company_id] != session[:company_id]
