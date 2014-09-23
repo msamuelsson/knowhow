@@ -4,7 +4,6 @@ class CompaniesController < ApplicationController
       helper_method :sort_column, :sort_direction
       def index
          @all_areas = Company.where(:deleted => false || nil).distinct(:area).pluck(:area)
-       
 
          @selected_area = params[:area_filter] || session[:area_filter] || @all_areas.sort[0]
 	 if Company.where(:area => @selected_area, :deleted => false || nil).empty? 
@@ -16,8 +15,15 @@ class CompaniesController < ApplicationController
          end
          @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
          @selected_company_id = params[:company_id] || session[:company_id] || @selected_companies[0].id
+	 if Company.where(:id => @selected_company_id, :deleted => false || nil).empty? 
+           @selected_company_id = @selected_companies[0].id
+	 end
+         if params[:company_id] != session[:company_id]
+           session[:company_id] = @selected_company_id
+           flash.keep
+         end
          @selected_company = Company.find(@selected_company_id)
-         
+         #logger.debug "selected_company_id: #{@selected_company_id}"
       end
 
       def new

@@ -15,7 +15,7 @@
       %tbody 
        - @all_areas.sort.each do |area| 
         %tr
-         %td{:class => (@selected_area == "#{area}"? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
+         %td{:class => ((@selected_area == area)? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
          
    .col-md-7
     .company-table
@@ -24,7 +24,7 @@
        %tr
         %th Compagnia
         %th Provvigioni
-        %th  Ultimo Aggiornamento
+        %th Ultimo Aggiornamento
         %th Canale 1
         %th Interlocutore
         %th Portale
@@ -32,9 +32,9 @@
 
       %tbody
        - @selected_companies.each do |company|
-        %tr{:class => (@selected_company_id == "#{company.id}"?"hilite" : nil)}
-         %td= link_to "#{company.compagnia}", companies_path(:company_id => "#{company.id}")
-         %td= company.provvigione
+        %tr{:class => ((@selected_company_id == company.id)? "hilite" : nil)}
+         %td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")
+         %td= company.provvigione 
          %td= company.aggiornamento
          %td= company.canale_1
          %td= company.interlocutore
