@@ -21,8 +21,9 @@
 
       %tbody 
        - @all_areas.sort.each do |area| 
-        %tr
-         %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
+        %tr{:onclick => "window.location.href = '" +  companies_path(:area_filter => "#{area}") + "'"}
+         -#%td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
+         %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= area
          
    .col-md-7
     .company-table
@@ -39,7 +40,9 @@
 
       %tbody
        - @selected_companies.each do |company|
-        %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil)}
+        -#%tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil)}
+        %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '" +  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
+         -#%td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")
          %td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")
          %td= company.provvigione 
          %td= company.aggiornamento

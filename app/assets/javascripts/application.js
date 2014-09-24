@@ -24,3 +24,4 @@ $(document).ready(function(){
     $('#notice').remove();
   }, 1);
  })
+
