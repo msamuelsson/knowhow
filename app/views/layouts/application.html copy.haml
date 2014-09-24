@@ -13,8 +13,11 @@
 
   %body
   -# this goes just inside %body:
-  = render :partial => 'flashes'
-  
+  - if flash[:notice]
+    #notice.message= flash[:notice]
+  - elsif flash[:warning]
+    #warning.message= flash[:warning]
+  -#= tabs
   = yield
 
   
