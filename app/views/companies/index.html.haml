@@ -6,6 +6,13 @@
  .container
   .row
    .col-md-2
+   .col-md-7.text-right
+    %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+   .col-md-3.text-right
+    %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
+ .container
+  .row
+   .col-md-2
     .area-table
      %table#area.compact
       %thead
@@ -38,7 +45,7 @@
          %td= company.aggiornamento
          %td= company.canale_1
          %td= company.interlocutore
-         %td= link_to "#{company.portale}", "#{company.portale}"
+         %td= link_to "#{company.portale}", "#{company.portale}", :target => "_blank"
          %td= company.premio_minimo
 
    .col-md-3
@@ -89,22 +96,15 @@
         %td= @selected_company.premio_minimo
        %tr
         %td='Scheda Condizioni:'
-        %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url
+        %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url, :target => "_blank"
        %tr
         %td='Questionari Nostri:'
-        %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url
+        %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url, :target => "_blank"
        %tr
         %td='Brochure ns o Compagnia:'
-        %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url
+        %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url, :target => "_blank"
        %tr
         %td='Nota Informativa:'
-        %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url
+        %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url, :target => "_blank"
   
 .footer
- .container
-  .row
-   .col-md-2
-   .col-md-7.text-right
-    %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
-   .col-md-3.text-right
-    %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get

@@ -1,4 +1,5 @@
 -# in _company_form.html.haml (the partial)
+-#= form_tag company_path(@company), :method => :put, :multipart => :true do
 
 - unless @company.errors.empty?
   #warning
@@ -6,6 +7,8 @@
     %ul
       - @company.errors.full_messages.each do |error|
         %li= error
+
+-#= form_for @company, :url => company_path(@company), :method => :put, :html => {:multipart => true} do |form|
 
 %table
   %tr
@@ -56,7 +59,6 @@
   %tr
     %td= label :company, :credenziali, 'Credenziali'
     %td= text_area :company, 'credenziali'
-    
 
   %tr
     %td= label :company, :premio_minimo, 'Premio Minimo'
@@ -64,19 +66,35 @@
 
   %tr
     %td= label :company, :scheda_condizioni, 'Scheda Condizioni'
-    -#%td= text_field :company, 'scheda_condizioni'
-    %td= file_field :company, 'scheda_condizioni'
+    -unless @company.scheda_condizioni.url.empty?
+      %td= link_to "#{@company.scheda_condizioni.original_filename}",  "#{@company.scheda_condizioni.url}", :target => "_blank" 
+      -#%td= button_to 'Elimina', remove_company_scheda_condizioni_path, :method => :get               # The button would look much nicer, but I didn't manage to make it work.
+      %td= link_to 'Elimina', remove_company_scheda_condizioni_path
+      %td= label :company, :scheda_condizioni, 'Sostituisci'
+    %td= file_field :company, :scheda_condizioni
 
   %tr
     %td= label :company, :questionari, 'Questionari Nostri'
+    -unless @company.questionari.url.empty?
+      %td= link_to "#{@company.questionari.original_filename}",  "#{@company.questionari.url}", :target => "_blank" 
+      %td= link_to 'Elimina', remove_company_questionari_path
+      %td= label :company, :questionari, 'Sostituisci'
     %td= file_field :company, 'questionari'
 
   %tr
     %td= label :company, :brochure, 'Brochure ns o Compagnia'
+    -unless @company.brochure.url.empty?
+      %td= link_to "#{@company.brochure.original_filename}",  "#{@company.brochure.url}", :target => "_blank" 
+      %td= link_to 'Elimina', remove_company_brochure_path
+      %td= label :company, :brochure, 'Sostituisci'
     %td= file_field :company, 'brochure'
 
   %tr
     %td= label :company, :nota_informativa, 'Nota Informativa'
+    -unless @company.nota_informativa.url.empty?
+      %td= link_to "#{@company.nota_informativa.original_filename}",  "#{@company.nota_informativa.url}", :target => "_blank" 
+      %td= link_to 'Elimina', remove_company_nota_informativa_path
+      %td= label :company, :nota_informativa, 'Sostituisci'
     %td= file_field :company, 'nota_informativa'
 
   %tr

@@ -1,0 +1,95 @@
+-# in _company_form.html.haml (the partial)
+-#= form_tag company_path(@company), :method => :put, :multipart => :true do
+
+- unless @company.errors.empty?
+  #warning
+    Errors prevented this company from being #{controller.action_name}d:
+    %ul
+      - @company.errors.full_messages.each do |error|
+        %li= error
+
+= form_for @company, :url => company_path(@company), :method => :put, :html => {:multipart => true} do |form|
+  
+  %table
+    %tr
+      %td= label :company, :compagnia, 'Compagnia'
+      %td= form.text_field :company, 'compagnia'
+  
+    %tr
+      %td= label :company, :area, 'Area'
+      - if controller.action_name == "edit"
+        %td= form.text_field :company, 'area'
+      - else
+        %td= form.text_field :company, :area,  :value => "#{@selected_area}"
+  
+    %tr
+      %td= label :company, :autore, 'Autore'
+      %td= form.text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}", :disabled => true
+  
+    %tr
+      %td= label :company, :provvigione, 'Provvigioni'
+      %td= form.text_field :company, 'provvigione'
+  
+    %tr
+      %td= label :company, :aggiornamento, 'Ultimo Aggiornamento'
+      %td= form.date_select :company, :aggiornamento, :max_years_allowed => 10
+      -#%td= form.text_field :company, :aggiornamento
+      -#, :id => "datepicker"
+  
+    %tr
+      %td= label :company, :canale_1, 'Canale 1'
+      %td= form.text_field :company, 'canale_1'
+  
+    %tr
+      %td= label :company, :canale_2, 'Canale 2'
+      %td= form.text_field :company, 'canale_2'
+  
+    %tr
+      %td= label :company, :interlocutore, 'Interlocutore'
+      %td= form.text_field :company, 'interlocutore'
+   
+    %tr
+      %td= label :company, :note_operative, 'Note Operative'
+      %td= form.text_area :company, 'note_operative'
+  
+    %tr
+      %td= label :company, :portale, 'Portale'
+      %td= form.url_field :company, 'portale'
+  
+    %tr
+      %td= label :company, :credenziali, 'Credenziali'
+      %td= form.text_area :company, 'credenziali'
+      
+  
+    %tr
+      %td= label :company, :premio_minimo, 'Premio Minimo'
+      %td= form.text_field :company, 'premio_minimo'
+  
+    %tr
+      %td= label :company, :scheda_condizioni, 'Scheda Condizioni'
+      %td= form.file_field :company, :scheda_condizioni
+  
+    %tr
+      %td= label :company, :questionari, 'Questionari Nostri'
+      %td= form.file_field :company, 'questionari'
+  
+    %tr
+      %td= label :company, :brochure, 'Brochure ns o Compagnia'
+      %td= form.file_field :company, 'brochure'
+  
+    %tr
+      %td= label :company, :nota_informativa, 'Nota Informativa'
+      %td= form.file_field :company, 'nota_informativa'
+  
+    %tr
+      %td
+        %div#button
+          = submit_tag 'Salva'
+  
+  -#  %tr
+      %td
+        %div#button
+          = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
+  -#  - if controller.action_name == "edit"
+      %td
+        = button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'

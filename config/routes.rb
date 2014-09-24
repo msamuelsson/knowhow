@@ -59,4 +59,8 @@
    resources :companies
    #root :to => redirect('/companies')
    root :to => "companies#index"
+   get 'company/:id/remove_scheda_condizioni', to: 'companies#remove_scheda_condizioni', as: 'remove_company_scheda_condizioni'
+   get 'company/:id/remove_questionari', to: 'companies#remove_questionari', as: 'remove_company_questionari'
+   get 'company/:id/remove_brochure', to: 'companies#remove_brochure', as: 'remove_company_brochure'
+   get 'company/:id/remove_nota_informativa', to: 'companies#remove_nota_informativa', as: 'remove_company_nota_informativa'
 end

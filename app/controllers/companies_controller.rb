@@ -9,19 +9,19 @@ class CompaniesController < ApplicationController
 	 if Company.where(:area => @selected_area, :deleted => false || nil).empty? 
            @selected_area = @all_areas.sort[0]
 	 end
-         if params[:area_filter] != session[:area_filter]
-           session[:area_filter] = @selected_area
-           flash.keep
-         end
+         #if params[:area_filter] != session[:area_filter]
+         session[:area_filter] = @selected_area
+         #flash.keep
+         #end
          @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
          @selected_company_id = params[:company_id] || session[:company_id] || @selected_companies[0].id
 	 if Company.where(:area => @selected_area, :id => @selected_company_id, :deleted => false || nil).empty? 
            @selected_company_id = @selected_companies[0].id
 	 end
-         if params[:company_id] != session[:company_id]
-           session[:company_id] = @selected_company_id
-           flash.keep
-         end
+         #if params[:company_id] != session[:company_id]
+         session[:company_id] = @selected_company_id
+         flash.keep
+         #end
          @selected_company = Company.find(@selected_company_id)
          #logger.debug "selected_company_id: #{@selected_company_id}"
       end
@@ -86,10 +86,39 @@ class CompaniesController < ApplicationController
         redirect_to companies_path(:area_filter => @company.area)
       end
 
+      def remove_scheda_condizioni
+        @company = Company.find(params[:id])
+	@company.scheda_condizioni = nil
+	@company.save
+	redirect_to edit_company_path(@company)
+      end
+
+      def remove_questionari
+        @company = Company.find(params[:id])
+	@company.questionari = nil
+	@company.save
+	redirect_to edit_company_path(@company)
+      end
+
+      def remove_brochure
+        @company = Company.find(params[:id])
+	@company.brochure = nil
+	@company.save
+	redirect_to edit_company_path(@company)
+      end
+
+      def remove_nota_informativa
+        @company = Company.find(params[:id])
+	@company.nota_informativa = nil
+	@company.save
+	redirect_to edit_company_path(@company)
+      end
+
+
       private
-        def company_params
-          params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionari, :brochure, :nota_informativa, :created_at, :updated_at)
-        end
+      def company_params
+        params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionari, :brochure, :nota_informativa, :created_at, :updated_at)
+      end
 
       private
       def sort_column
