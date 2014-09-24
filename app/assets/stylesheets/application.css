@@ -17,7 +17,9 @@
  */
 
 html, body {
-  margin: 5;
+  margin-left: 11pt;
+  margin-right: 11pt;
+  border: 0;
   padding: 0;
   background-color:white;
   color: DarkSlateGrey;
