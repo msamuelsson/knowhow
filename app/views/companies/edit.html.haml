@@ -1,14 +1,15 @@
 .header
  =render :partial => 'header_form'
 
-%h2 Modifica Compagnia
+.form-title
+ %h2 Modifica Compagnia
 
 = form_tag company_path(@company), :method => :put, :multipart => :true do
  = render :partial => 'company_form'
 
--#= button_to 'Elimina', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
-= button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
-= button_to 'Elimina', company_path(@company), :method => :delete
+%div#button
+ = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
+ = button_to 'Elimina', company_path(@company), :method => :delete
 
 
  
