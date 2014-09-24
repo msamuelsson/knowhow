@@ -5,11 +5,11 @@ if [ -z "$1" ]; then
 	exit;
 fi
 
-cd /Users/maria/Documents/Brokerstudio/Projects/knowhow
+#cd /Users/maria/Documents/Brokerstudio/Projects/knowhow
 
 git add .
 git commit -m "$1"
 git push -u origin master
 
-cd -
+#cd -
 
