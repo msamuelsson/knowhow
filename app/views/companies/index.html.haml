@@ -18,10 +18,12 @@
           %thead
             %tr
               %th Area
-          %tbody 
+          %tbody.rowlink{"data-link" => "row"} 
             - @all_areas.sort.each do |area| 
-              %tr{:onclick => "window.location.href = '" +  companies_path(:area_filter => "#{area}") + "'"}
-                %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= area
+              -#%tr{:onclick => "window.location.href = '" + companies_path(:area_filter => "#{area}") + "'"}
+              %tr
+                -#%td{:class => ((@selected_area == "#{area}")? "hilite": nil)}= area
+                %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
 
     .col-md-7
       .company-table
@@ -36,10 +38,12 @@
               %th Portale
               %th Premio Minimo
 
-          %tbody
+          %tbody.rowlink{"data-link" => "row"}
             - @selected_companies.each do |company|
-              %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '" +  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
-                %td= company.compagnia
+              -#%tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '"
+              -#+  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
+              %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil)}
+                %td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")                 
                 %td= company.provvigione 
                 %td= company.aggiornamento
                 %td= company.canale_1
@@ -49,10 +53,11 @@
 
     .col-md-3
       .details-table
-        %table#details.stripe.compact
+        %table#details.compact.stripe
           %thead
             %tr
               %th{:colspan => 2}='Details'
+              
 
 
 

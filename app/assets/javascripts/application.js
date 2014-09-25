@@ -17,11 +17,8 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap
+//= require jasny-bootstrap.js
 //= require_tree .
 
-$(document).ready(function(){
-  setTimeout(function(){
-    $('#notice').remove();
-  }, 1);
- })
+$('tbody.rowlink').rowlink()
 
