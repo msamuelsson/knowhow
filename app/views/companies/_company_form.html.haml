@@ -68,8 +68,7 @@
     %td= label :company, :scheda_condizioni, 'Scheda Condizioni'
     -unless @company.scheda_condizioni.url.empty?
       %td= link_to "#{@company.scheda_condizioni.original_filename}",  "#{@company.scheda_condizioni.url}", :target => "_blank" 
-      -#%td= button_to 'Elimina', remove_company_scheda_condizioni_path, :method => :get               # The button would look much nicer, but I didn't manage to make it work.
-      %td= link_to 'Elimina', remove_company_scheda_condizioni_path
+      %td= link_to 'Elimina', remove_company_scheda_condizioni_path, :class => :button
       %td= label :company, :scheda_condizioni, 'Sostituisci'
     %td= file_field :company, :scheda_condizioni
 

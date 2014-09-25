@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
       #before_action :authenticate_user!
   
-      helper_method :sort_column, :sort_direction
+      helper_method :sort_column, :sort_direction, :button_link_to
+
       def index
          @all_areas = Company.where(:deleted => false || nil).distinct(:area).pluck(:area)
 
@@ -120,13 +121,20 @@ class CompaniesController < ApplicationController
         params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionari, :brochure, :nota_informativa, :created_at, :updated_at)
       end
 
-      private
       def sort_column
         #params[:sort] || "compagnia"
         Company.column_names.include?(params[:sort]) ? params[:sort] : "compagnia"
       end
+
       def sort_direction
         #params[:direction] || "asc"
         %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
       end
+
+      def button_link_to(name, url)
+	content_tag :button, :type => "button", :onclick => "window.location.href =  '#{url_for(url)}'; " do
+	  "#{name}"
+	end
+      end
+
 end
