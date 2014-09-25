@@ -43,7 +43,7 @@
         -#%tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil)}
         %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '" +  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
          -#%td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")
-         %td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")
+         %td= company.compagnia
          %td= company.provvigione 
          %td= company.aggiornamento
          %td= company.canale_1
