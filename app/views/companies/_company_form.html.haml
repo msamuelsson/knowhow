@@ -76,7 +76,7 @@
     %td= label :company, :questionari, 'Questionari Nostri'
     -unless @company.questionari.url.empty?
       %td= link_to "#{@company.questionari.original_filename}",  "#{@company.questionari.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_questionari_path
+      %td= link_to 'Elimina', remove_company_questionari_path, :class => :button
       %td= label :company, :questionari, 'Sostituisci'
     %td= file_field :company, 'questionari'
 
@@ -84,7 +84,7 @@
     %td= label :company, :brochure, 'Brochure ns o Compagnia'
     -unless @company.brochure.url.empty?
       %td= link_to "#{@company.brochure.original_filename}",  "#{@company.brochure.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_brochure_path
+      %td= link_to 'Elimina', remove_company_brochure_path, :class => :button
       %td= label :company, :brochure, 'Sostituisci'
     %td= file_field :company, 'brochure'
 
@@ -92,7 +92,7 @@
     %td= label :company, :nota_informativa, 'Nota Informativa'
     -unless @company.nota_informativa.url.empty?
       %td= link_to "#{@company.nota_informativa.original_filename}",  "#{@company.nota_informativa.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_nota_informativa_path
+      %td= link_to 'Elimina', remove_company_nota_informativa_path, :class => :button
       %td= label :company, :nota_informativa, 'Sostituisci'
     %td= file_field :company, 'nota_informativa'
 
