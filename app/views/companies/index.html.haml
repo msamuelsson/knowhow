@@ -1,119 +1,115 @@
 -#  This file is app/views/companies/index.html.haml
 .header
- =render :partial => 'header_form'
+  =render :partial => 'header_form'
 
 .table-content
- .container
+  -#.container
   .row
-   .col-md-2
-   .col-md-7.text-right
-    %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
-   .col-md-3.text-right
-    %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
- .container
+    .col-md-2
+    .col-md-7.text-left
+      %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+    .col-md-3.text-left
+      %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
+
   .row
-   .col-md-2
-    .area-table
-     %table#area.compact
-      %thead
-       %tr
-        %th Area
+    .col-md-2
+      .area-table
+        %table#area.stripe.compact
+          %thead
+            %tr
+              %th Area
+          %tbody 
+            - @all_areas.sort.each do |area| 
+              %tr{:onclick => "window.location.href = '" +  companies_path(:area_filter => "#{area}") + "'"}
+                %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= area
 
-      %tbody 
-       - @all_areas.sort.each do |area| 
-        %tr{:onclick => "window.location.href = '" +  companies_path(:area_filter => "#{area}") + "'"}
-         -#%td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
-         %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= area
-         
-   .col-md-7
-    .company-table
-     %table#company.stripe.compact.hover
-      %thead
-       %tr
-        %th Compagnia
-        %th Provvigioni
-        %th Ultimo Aggiornamento
-        %th Canale 1
-        %th Interlocutore
-        %th Portale
-        %th Premio Minimo
+    .col-md-7
+      .company-table
+        %table#company.stripe.compact
+          %thead
+            %tr
+              %th Compagnia
+              %th Provvigioni
+              %th Ultimo Aggiornamento
+              %th Canale 1
+              %th Interlocutore
+              %th Portale
+              %th Premio Minimo
 
-      %tbody
-       - @selected_companies.each do |company|
-        -#%tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil)}
-        %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '" +  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
-         -#%td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")
-         %td= company.compagnia
-         %td= company.provvigione 
-         %td= company.aggiornamento
-         %td= company.canale_1
-         %td= company.interlocutore
-         %td= link_to "#{company.portale}", "#{company.portale}", :target => "_blank"
-         %td= company.premio_minimo
+          %tbody
+            - @selected_companies.each do |company|
+              %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '" +  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
+                %td= company.compagnia
+                %td= company.provvigione 
+                %td= company.aggiornamento
+                %td= company.canale_1
+                %td= company.interlocutore
+                %td= link_to "#{company.portale}", "#{company.portale}", :target => "_blank"
+                %td= company.premio_minimo
 
-   .col-md-3
-    .details-table
-     %table#details.compact
-      %thead
-       %tr
-        %th{:colspan => 2}='Details'
-       
-     
+    .col-md-3
+      .details-table
+        %table#details.stripe.compact
+          %thead
+            %tr
+              %th{:colspan => 2}='Details'
 
-      %tbody 
-       %tr
-        %td='Compagnia:' 
-        %td= @selected_company.compagnia
-       %tr
-        %td='Area:' 
-        %td= @selected_company.area  
-       %tr       
-        %td='Provvigioni:'
-        %td= @selected_company.provvigione
-       %tr
-        %td='Autore:'
-        %td= @selected_company.autore
-       %tr
-        %td='Ultimo Aggiornamento:'
-        %td= @selected_company.aggiornamento
-       %tr
-        %td='Canale 1:'
-        %td= @selected_company.canale_1
-       %tr
-        %td='Canale 2:'
-        %td= @selected_company.canale_2
-       %tr
-        %td='Interlocutore:'
-        %td= @selected_company.interlocutore
-       %tr
-        %td='Note Operative:'
-        %td= @selected_company.note_operative
-       %tr
-        %td='Portale:'
-        %td= @selected_company.portale
-       %tr
-        %td='Credenziali:'
-        %td= @selected_company.credenziali
-       %tr
-        %td='Premio Minimo:'
-        %td= @selected_company.premio_minimo
-       %tr
-        %td='Scheda Condizioni:'
-        %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url, :target => "_blank"
-       %tr
-        %td='Questionari Nostri:'
-        %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url, :target => "_blank"
-       %tr
-        %td='Brochure ns o Compagnia:'
-        %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url, :target => "_blank"
-       %tr
-        %td='Nota Informativa:'
-        %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url, :target => "_blank"
-  
+
+
+          %tbody 
+            %tr
+              %td='Compagnia:' 
+              %td= @selected_company.compagnia
+            %tr
+              %td='Area:' 
+              %td= @selected_company.area  
+            %tr       
+              %td='Provvigioni:'
+              %td= @selected_company.provvigione
+            %tr
+              %td='Autore:'
+              %td= @selected_company.autore
+            %tr
+              %td='Ultimo Aggiornamento:'
+              %td= @selected_company.aggiornamento
+            %tr
+              %td='Canale 1:'
+              %td= @selected_company.canale_1
+            %tr
+              %td='Canale 2:'
+              %td= @selected_company.canale_2
+            %tr
+              %td='Interlocutore:'
+              %td= @selected_company.interlocutore
+            %tr
+              %td='Note Operative:'
+              %td= @selected_company.note_operative
+            %tr
+              %td='Portale:'
+              %td= @selected_company.portale
+            %tr
+              %td='Credenziali:'
+              %td= @selected_company.credenziali
+            %tr
+              %td='Premio Minimo:'
+              %td= @selected_company.premio_minimo
+            %tr
+              %td='Scheda Condizioni:'
+              %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url, :target => "_blank"
+            %tr
+              %td='Questionari Nostri:'
+              %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url, :target => "_blank"
+            %tr
+              %td='Brochure ns o Compagnia:'
+              %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url, :target => "_blank"
+            %tr
+              %td='Nota Informativa:'
+              %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url, :target => "_blank"
+
 .footer
- .container
-  .row
-   .col-md-12.text-center
-    %p
-    %p © 2014 Brokerstudio Srl · Via San Pier Tommaso, 18/3 – 40139 Bologna – P.I. 02110861206 - RUIB000126973
+  .container
+    .row
+      .col-md-12.text-center
+        %p
+          %p © 2014 Brokerstudio Srl · Via San Pier Tommaso, 18/3 – 40139 Bologna – P.I. 02110861206 - RUIB000126973
     %p

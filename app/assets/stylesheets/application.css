@@ -30,7 +30,21 @@ html, body {
 .header {
     margin-bottom: 40px;
     padding-left: 50px;
+    padding-right: 50px;
     border-bottom: 1px solid DarkSlateGrey;
+}
+
+.table-content {
+    margin-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.footer {
+    margin-top: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-top: 1px solid DarkSlateGrey;
 }
 
 .knowhow {
@@ -175,27 +189,3 @@ input[type="submit"] {
     font-size: 13px;
     color: white;
 }
-
-/* show view*/
-
-ul#details {
-    list-style: none;
-}
-
-.detailsfont {
-    font-weight: bold;
-    font-size: 12px;
-}
-
-#details_edit {
-    position: absolute;
-    left: 40px;
-    top: 550px;
-}
-
-#details_back {
-    position: absolute;
-    left: 40px;
-    top: 520px;
-}
-
