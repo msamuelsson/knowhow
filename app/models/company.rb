@@ -7,24 +7,32 @@ class Company < ActiveRecord::Base
 	  :default_url => "",
 	  :default_path => ""
   validates_attachment :scheda_condizioni, 
-	  :content_type => { :content_type => "application/pdf" }, 
+	  :content_type => { :content_type => ["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
   has_attached_file :questionari,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :default_url => "",
 	  :default_path => ""
-  validates_attachment :questionari, :content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
+  validates_attachment :questionari, 
+	  :content_type => { :content_type => ["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+	  :size => { :in => 0..50.megabytes }
   has_attached_file :brochure,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :default_url => "",
 	  :default_path => ""
-  validates_attachment :brochure, :content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
+  validates_attachment :brochure, 
+	  :content_type => { :content_type => ["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+	  :size => { :in => 0..50.megabytes }
+	  #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
   has_attached_file :nota_informativa,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :default_url => "",
 	  :default_path => ""
-  validates_attachment :nota_informativa, :content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
+  validates_attachment :nota_informativa, 
+	  :content_type => { :content_type => ["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+	  :size => { :in => 0..50.megabytes }
+	  #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
 end
