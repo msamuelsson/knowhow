@@ -66,3 +66,5 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem "paperclip", "~> 4.2"
 
 gem "sprockets-rails"
+
+gem 'seed_dump'
