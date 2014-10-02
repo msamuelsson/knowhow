@@ -6,6 +6,7 @@
   -#.container
   .row
     .col-md-2
+      %p= button_to 'Rinomina area', editarea_path(params), :method => :get
     .col-md-7.text-left
       %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
     .col-md-3.text-left
@@ -102,10 +103,10 @@
               %td='Scheda Condizioni:'
               %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url, :target => "_blank"
             %tr
-              %td='Questionari Nostri:'
+              %td='Questionari Compagnia:'
               %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url, :target => "_blank"
             %tr
-              %td='Brochure ns o Compagnia:'
+              %td='Brochure Compagnia:'
               %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url, :target => "_blank"
             %tr
               %td='Nota Informativa:'

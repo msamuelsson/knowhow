@@ -86,6 +86,22 @@ class CompaniesController < ApplicationController
         flash[:notice] = "Compagnia '#{@company.compagnia}' eliminata."
         redirect_to companies_path(:area_filter => @company.area)
       end
+      
+      def editarea
+        # will render app/views/companies/editarea.html.haml by default
+        @selected_area = session[:area_filter]
+      end
+      
+      def updatearea
+        @new_area = params[:new_area]
+        @old_area = session[:area_filter]
+        if Company.where(:area => @old_area).update_all({:area => @new_area})
+          flash[:notice] = "Area #{@new_area} aggiornata."
+          redirect_to companies_path(:area_filter => @new_area)
+        else
+          render editarea
+        end
+      end
 
       def remove_scheda_condizioni
         @company = Company.find(params[:id])

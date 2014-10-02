@@ -56,6 +56,8 @@
   #     resources :products
   #   end
    devise_for :users
+   get '/companies/editarea' => 'companies#editarea', :as => 'editarea'
+   post '/companies/editarea' => 'companies#updatearea', :as => 'updatearea'
    resources :companies
    #root :to => redirect('/companies')
    root :to => "companies#index"

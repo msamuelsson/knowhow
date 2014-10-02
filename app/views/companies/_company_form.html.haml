@@ -73,7 +73,7 @@
     %td= file_field :company, :scheda_condizioni
 
   %tr
-    %td= label :company, :questionari, 'Questionari Nostri'
+    %td= label :company, :questionari, 'Questionari Compagnia'
     -unless @company.questionari.url.empty?
       %td= link_to "#{@company.questionari.original_filename}",  "#{@company.questionari.url}", :target => "_blank" 
       %td= link_to 'Elimina', remove_company_questionari_path, :class => :button
@@ -81,7 +81,7 @@
     %td= file_field :company, 'questionari'
 
   %tr
-    %td= label :company, :brochure, 'Brochure ns o Compagnia'
+    %td= label :company, :brochure, 'Brochure Compagnia'
     -unless @company.brochure.url.empty?
       %td= link_to "#{@company.brochure.original_filename}",  "#{@company.brochure.url}", :target => "_blank" 
       %td= link_to 'Elimina', remove_company_brochure_path, :class => :button

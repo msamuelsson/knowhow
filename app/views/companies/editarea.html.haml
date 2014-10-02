@@ -1,0 +1,22 @@
+.header
+  =render :partial => 'header_form'
+
+.form-title
+  %h2 Rinomina Area
+
+=form_tag updatearea_path(@selected_area), :method => :post, :html => {:class => "form-horizontal"} do 
+      
+  .form-group
+    .col-md-2
+      = label :new_area, 'Nuova Area', class: "control-label"
+    .col-md-10
+      = text_field_tag :new_area, "#{@selected_area}"
+      
+  .form-group
+    .col-md-12
+    %div#button
+      = submit_tag 'Salva'
+     
+%div#button
+  = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
+  
