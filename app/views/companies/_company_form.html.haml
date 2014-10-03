@@ -68,38 +68,42 @@
     %td= label :company, :scheda_condizioni, 'Scheda Condizioni'
     -unless @company.scheda_condizioni.url.empty?
       %td= link_to "#{@company.scheda_condizioni.original_filename}",  "#{@company.scheda_condizioni.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_scheda_condizioni_path, :class => :button
-      %td= label :company, :scheda_condizioni, 'Sostituisci'
-    %td= file_field :company, :scheda_condizioni
+      %td= link_to 'Elimina', remove_company_scheda_condizioni_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+      -#%td= label :company, :scheda_condizioni, 'Sostituisci'
+    -else
+      %td= file_field :company, :scheda_condizioni
 
   %tr
     %td= label :company, :questionari, 'Questionari Compagnia'
     -unless @company.questionari.url.empty?
       %td= link_to "#{@company.questionari.original_filename}",  "#{@company.questionari.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_questionari_path, :class => :button
-      %td= label :company, :questionari, 'Sostituisci'
-    %td= file_field :company, 'questionari'
+      %td= link_to 'Elimina', remove_company_questionari_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+      -#%td= label :company, :questionari, 'Sostituisci'
+    -else  
+      %td= file_field :company, 'questionari'
 
   %tr
     %td= label :company, :brochure, 'Brochure Compagnia'
     -unless @company.brochure.url.empty?
       %td= link_to "#{@company.brochure.original_filename}",  "#{@company.brochure.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_brochure_path, :class => :button
-      %td= label :company, :brochure, 'Sostituisci'
-    %td= file_field :company, 'brochure'
+      %td= link_to 'Elimina', remove_company_brochure_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+      -#%td= label :company, :brochure, 'Sostituisci'
+    -else
+      %td= file_field :company, 'brochure'
 
   %tr
     %td= label :company, :nota_informativa, 'Nota Informativa'
     -unless @company.nota_informativa.url.empty?
       %td= link_to "#{@company.nota_informativa.original_filename}",  "#{@company.nota_informativa.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_nota_informativa_path, :class => :button
-      %td= label :company, :nota_informativa, 'Sostituisci'
-    %td= file_field :company, 'nota_informativa'
+      %td= link_to 'Elimina', remove_company_nota_informativa_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+      -#%td= label :company, :nota_informativa, 'Sostituisci'
+    -else
+      %td= file_field :company, 'nota_informativa'
 
   %tr
     %td
       %div#button
-        = submit_tag 'Salva'
+        = submit_tag 'Salva', class: 'btn btn-primary custom'
 
 -#  %tr
     %td

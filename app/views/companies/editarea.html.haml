@@ -15,8 +15,8 @@
   .form-group
     .col-md-12
     %div#button
-      = submit_tag 'Salva'
+      = submit_tag 'Salva', class: 'btn btn-primary custom'
      
 %div#button
-  = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
+  = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get, class: 'btn btn-warning custom'
   

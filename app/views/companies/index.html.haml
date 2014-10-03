@@ -5,12 +5,12 @@
 .table-content
   -#.container
   .row
-    .col-md-2
-      %p= button_to 'Rinomina area', editarea_path(params), :method => :get
+    .col-md-2.text-left
+      %p= button_to 'Rinomina area', editarea_path(params), :method => :get, class: 'btn btn-primary btn-sm custom-view'
     .col-md-7.text-left
-      %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get
+      %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get, class: 'btn btn-primary btn-sm custom-view'
     .col-md-3.text-left
-      %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get
+      %p= button_to 'Modifica compagnia', edit_company_path(@selected_company), :method => :get, class: 'btn btn-primary btn-sm custom-view'
 
   .row
     .col-md-2

@@ -17,6 +17,7 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap.min
 //= require jasny-bootstrap.js
 //= require_tree .
 

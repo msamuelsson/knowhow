@@ -9,8 +9,8 @@
   = render :partial => 'company_form'
 
 %div#button
-  = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
-  = button_to 'Elimina', company_path(@company), :method => :delete
+  = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get, class: 'btn btn-warning custom'
+  = button_to 'Elimina', company_path(@company), :method => :delete, class: 'btn btn-danger custom', data: {confirm: "Are you sure?"} 
 
 
  

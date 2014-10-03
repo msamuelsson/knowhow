@@ -12,8 +12,10 @@
  *
  *= require_self 
  *= require bootstrap
+ *= require jquery-ui
  *= require dataTables/jquery.dataTables
  *= require jasny-bootstrap
+ *= require bootstrap.min
  *= require_tree 
  */
 
@@ -177,7 +179,17 @@ form input {
     padding-left: 20px; 
 }
 
-input[type="submit"] {
+/*button size edit view*/
+.custom {
+    width: 78px !important;
+}
+
+/*button size index view*/
+.custom-view {
+    width: 130px !important;
+}
+
+/*input[type="submit"] {
     text-align: center;
     font-weight: bold;
     width: 140px;
@@ -190,7 +202,7 @@ input[type="submit"] {
     font-style: normal;
     font-size: 13px;
     color: white;
-}
+}*/
 
 a.button {
     background-color: #2ea2cc;
