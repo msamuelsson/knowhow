@@ -55,14 +55,21 @@
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-   devise_for :users
-   get '/companies/editarea' => 'companies#editarea', :as => 'editarea'
-   post '/companies/editarea' => 'companies#updatearea', :as => 'updatearea'
+   #devise_for :users
+   get '/companies/:id/editarea' => 'companies#editarea', :as => 'editarea'
+   post '/companies/:id/updatearea' => 'companies#updatearea', :as => 'updatearea'
+   #put '/companies/:ideditarea' => 'companies#updatearea', :as => 'updatearea'
+   #post '/companies/editarea' => 'companies#updatearea', :as => 'updatearea'
+   #get '/companies/remove_questionariobs1', to: 'companies#remove_questionariobs1', as: 'remove_company_questionariobs1'
    resources :companies
    #root :to => redirect('/companies')
    root :to => "companies#index"
    get 'company/:id/remove_scheda_condizioni', to: 'companies#remove_scheda_condizioni', as: 'remove_company_scheda_condizioni'
-   get 'company/:id/remove_questionari', to: 'companies#remove_questionari', as: 'remove_company_questionari'
+   get 'company/:id/remove_questionariocomp1', to: 'companies#remove_questionariocomp1', as: 'remove_company_questionariocomp1'
+   get 'company/:id/remove_questionariocomp2', to: 'companies#remove_questionariocomp2', as: 'remove_company_questionariocomp2'
+   get 'company/:id/remove_questionariobs1', to: 'companies#remove_questionariobs1', as: 'remove_company_questionariobs1'
+   get 'company/:id/remove_questionariobs2', to: 'companies#remove_questionariobs2', as: 'remove_company_questionariobs2'
    get 'company/:id/remove_brochure', to: 'companies#remove_brochure', as: 'remove_company_brochure'
+   get 'company/:id/remove_brochurebs', to: 'companies#remove_brochurebs', as: 'remove_company_brochurebs'
    get 'company/:id/remove_nota_informativa', to: 'companies#remove_nota_informativa', as: 'remove_company_nota_informativa'
 end

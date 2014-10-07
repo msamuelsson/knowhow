@@ -13,18 +13,64 @@ class Company < ActiveRecord::Base
 		  "application/msword",
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
-  has_attached_file :questionari,
+	
+	# Questionario Compagnia 1
+  has_attached_file :questionariocomp1,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :default_url => "",
 	  :default_path => ""
-  validates_attachment :questionari, 
+  validates_attachment :questionariocomp1, 
 	  :content_type => { :content_type => ["application/pdf",
 		  "application/vnd.ms-excel",     
 		  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 		  "application/msword",
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
+	  
+	# Questionario Compagnia 2
+  has_attached_file :questionariocomp2,
+    :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :default_url => "",
+    :default_path => ""
+  validates_attachment :questionariocomp2, 
+    :content_type => { :content_type => ["application/pdf",
+      "application/vnd.ms-excel",     
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+    :size => { :in => 0..50.megabytes }
+    
+  # Questionario Brokerstudio 1
+  has_attached_file :questionariobs1,
+    :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :default_url => "",
+    :default_path => ""
+  validates_attachment :questionariobs1, 
+    :content_type => { :content_type => ["application/pdf",
+      "application/vnd.ms-excel",     
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+    :size => { :in => 0..50.megabytes }
+    
+  # Questionario Brokerstudio 2
+  has_attached_file :questionariobs2,
+    :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :default_url => "",
+    :default_path => ""
+  validates_attachment :questionariobs2, 
+    :content_type => { :content_type => ["application/pdf",
+      "application/vnd.ms-excel",     
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+    :size => { :in => 0..50.megabytes } 
+    
+  # Brochure Compagnia   
   has_attached_file :brochure,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
@@ -38,6 +84,23 @@ class Company < ActiveRecord::Base
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
 	  #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
+	  
+	# Brochure Brokerstudio  
+  has_attached_file :brochurebs,
+    :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+    :default_url => "",
+    :default_path => ""
+  validates_attachment :brochurebs, 
+    :content_type => { :content_type => ["application/pdf",
+      "application/vnd.ms-excel",     
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
+    :size => { :in => 0..50.megabytes }
+    #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }  
+  
+  # Nota Informative  
   has_attached_file :nota_informativa,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",

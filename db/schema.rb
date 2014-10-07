@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922132331) do
+ActiveRecord::Schema.define(version: 20141006133109) do
 
   create_table "companies", force: true do |t|
     t.string   "compagnia"
@@ -37,14 +37,30 @@ ActiveRecord::Schema.define(version: 20140922132331) do
     t.string   "scheda_condizioni_content_type"
     t.integer  "scheda_condizioni_file_size"
     t.datetime "scheda_condizioni_updated_at"
-    t.string   "questionari_file_name"
-    t.string   "questionari_content_type"
-    t.integer  "questionari_file_size"
-    t.datetime "questionari_updated_at"
+    t.string   "questionariocomp1_file_name"
+    t.string   "questionariocomp1_content_type"
+    t.integer  "questionariocomp1_file_size"
+    t.datetime "questionariocomp1_updated_at"
     t.string   "brochure_file_name"
     t.string   "brochure_content_type"
     t.integer  "brochure_file_size"
     t.datetime "brochure_updated_at"
+    t.string   "brochurebs_file_name"
+    t.string   "brochurebs_content_type"
+    t.integer  "brochurebs_file_size"
+    t.datetime "brochurebs_updated_at"
+    t.string   "questionariocomp2_file_name"
+    t.string   "questionariocomp2_content_type"
+    t.integer  "questionariocomp2_file_size"
+    t.datetime "questionariocomp2_updated_at"
+    t.string   "questionariobs1_file_name"
+    t.string   "questionariobs1_content_type"
+    t.integer  "questionariobs1_file_size"
+    t.datetime "questionariobs1_updated_at"
+    t.string   "questionariobs2_file_name"
+    t.string   "questionariobs2_content_type"
+    t.integer  "questionariobs2_file_size"
+    t.datetime "questionariobs2_updated_at"
   end
 
   create_table "users", force: true do |t|

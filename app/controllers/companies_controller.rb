@@ -7,42 +7,63 @@ class CompaniesController < ApplicationController
          @all_areas = Company.where(:deleted => false || nil).distinct(:area).pluck(:area)
 
          @selected_area = params[:area_filter] || session[:area_filter] || @all_areas.sort[0]
-	 if Company.where(:area => @selected_area, :deleted => false || nil).empty? 
+	       if Company.where(:area => @selected_area, :deleted => false || nil).empty? 
            @selected_area = @all_areas.sort[0]
-	 end
-         #if params[:area_filter] != session[:area_filter]
+	       end
+         
          session[:area_filter] = @selected_area
-         #flash.keep
-         #end
+         
          @selected_companies = Company.where(:area => @selected_area, :deleted => false || nil).order(sort_column + ' ' + sort_direction)
          @selected_company_id = params[:company_id] || session[:company_id] || @selected_companies[0].id
-	 if Company.where(:area => @selected_area, :id => @selected_company_id, :deleted => false || nil).empty? 
+	       if Company.where(:area => @selected_area, :id => @selected_company_id, :deleted => false || nil).empty? 
            @selected_company_id = @selected_companies[0].id
-	 end
-         #if params[:company_id] != session[:company_id]
+	       end
+     
          session[:company_id] = @selected_company_id
          flash.keep
-         #end
+        
          @selected_company = Company.find(@selected_company_id)
-         #logger.debug "selected_company_id: #{@selected_company_id}"
+         
       end
 
       def new
         # default: render 'new' template
         @company = Company.new
         @selected_area = params[:area_filter] || session[:area_filter]
-        authorize! :create, @company
+        #authorize! :create, @company
       end
 
       def create
         @company = Company.new(company_params)
-        #@company = Company.create!(params[:company])
+        
+        # Add company specific info
+        @comp_info = Company.where(:compagnia => company_params[:compagnia]).first
+        if @comp_info != nil
+          @company.portale = @comp_info.portale
+          @company.credenziali = @comp_info.credenziali
+        end
+        
+        # Add area specific info
+        @area_info = Company.where(:area => company_params[:area]).first
+        if @area_info != nil
+          @company.questionariobs1_file_name = @area_info.questionariobs1_file_name
+          @company.questionariobs1_content_type = @area_info.questionariobs1_content_type
+          @company.questionariobs1_file_size = @area_info.questionariobs1_file_size
+          @company.questionariobs1_updated_at = @area_info.questionariobs1_updated_at
+          @company.questionariobs2_file_name = @area_info.questionariobs2_file_name
+          @company.questionariobs2_content_type = @area_info.questionariobs2_content_type
+          @company.questionariobs2_file_size = @area_info.questionariobs2_file_size
+          @company.questionariobs2_updated_at = @area_info.questionariobs2_updated_at
+          @company.brochurebs_file_name = @area_info.brochurebs_file_name
+          @company.brochurebs_content_type = @area_info.brochurebs_content_type
+          @company.brochurebs_file_size = @area_info.brochurebs_file_size
+          @company.brochurebs_updated_at = @area_info.brochurebs_updated_at
+        end
+        
         if @company.save
           flash[:notice] = "#{@company.compagnia} creata."
-          #redirect_to companies_path(:area_filter => @company.area)
           redirect_to companies_path(:area_filter => @company.area, :company_id => @company.id)
         else
-          #flash[:notice] = "Creazione compagnia fallita."
           @selected_area = params[:area_filter] || session[:area_filter]
           render 'new' # note, 'new' template can access @company's field values!
         end  
@@ -50,12 +71,15 @@ class CompaniesController < ApplicationController
 
       def edit
         @company = Company.find(params[:id])
-        authorize! :update, @company
+        #authorize! :update, @company
       end
 
       def update
+        # Update all parameters for this specific company and for this specific area, 
+        # also update Portale and Credenziale for all companies with the same name (for all areas)
         @company = Company.find params[:id]
         if @company.update_attributes(company_params)
+          Company.where(:compagnia => @company.compagnia).update_all({:portale => @company.portale, :credenziali => @company.credenziali})
           flash[:notice] = "#{@company.compagnia} aggiornata."
           redirect_to companies_path(:area_filter => @company.area, :company_id => @company.id)
         else
@@ -66,17 +90,7 @@ class CompaniesController < ApplicationController
       end
 
       def show
-        #id = params[:id]
-        @company = Company.find(params[:id])
-        session[:area_filter] = @company.area
-        flash.keep
-        if @company == nil
-          flash[:notice] = "No company with that ID could be found!!!!!!!"
-          redirect_to companies_path
-        end
-        @noteoperative = @company.note_operative
-        render(:partial => 'noteoperative', :object => @noteoperative) if request.xhr?
-        # will render app/views/companies/show.html.haml by default
+        
       end
       
       def destroy
@@ -88,53 +102,84 @@ class CompaniesController < ApplicationController
       end
       
       def editarea
-        # will render app/views/companies/editarea.html.haml by default
-        @selected_area = session[:area_filter]
+        @company = Company.find(params[:id])
       end
       
       def updatearea
-        @new_area = params[:new_area]
-        @old_area = session[:area_filter]
-        if Company.where(:area => @old_area).update_all({:area => @new_area})
-          flash[:notice] = "Area #{@new_area} aggiornata."
-          redirect_to companies_path(:area_filter => @new_area)
-        else
-          render editarea
+        @company = Company.find params[:id]
+        Company.where(:area => @company.area).each do |company_area|
+          company_area.update_attributes(company_params)
         end
+        flash[:notice] = "Area #{company_params[:area]} aggiornata."
+        redirect_to companies_path(:area_filter => company_params[:area], :company_id => company_params[:id])
       end
 
       def remove_scheda_condizioni
         @company = Company.find(params[:id])
-	@company.scheda_condizioni = nil
-	@company.save
-	redirect_to edit_company_path(@company)
+	      @company.scheda_condizioni = nil
+	      @company.save
+	      redirect_to edit_company_path(@company)
       end
-
-      def remove_questionari
+      
+      def remove_questionariocomp1
         @company = Company.find(params[:id])
-	@company.questionari = nil
-	@company.save
-	redirect_to edit_company_path(@company)
+	      @company.questionariocomp1 = nil
+	      @company.save
+	      redirect_to edit_company_path(@company)
+      end
+      
+      def remove_questionariocomp2
+        @company = Company.find(params[:id])
+        @company.questionariocomp2 = nil
+        @company.save
+        redirect_to edit_company_path(@company)
+      end
+      
+      def remove_questionariobs1
+        @company = Company.find(params[:id])
+        Company.where(:area => @company.area).each do |company_area|
+          company_area.questionariobs1 = nil
+          company_area.save
+        end
+        redirect_to editarea_path(@company)
+      end
+      
+      def remove_questionariobs2
+        @company = Company.find(params[:id])
+        Company.where(:area => @company.area).each do |company_area|
+          company_area.questionariobs2 = nil
+          company_area.save
+        end
+        redirect_to editarea_path(@company)
+      end
+      
+      def remove_brochurebs
+        @company = Company.find(params[:id])
+        Company.where(:area => @company.area).each do |company_area|
+          company_area.brochurebs = nil
+          company_area.save
+        end
+        redirect_to editarea_path(@company)
       end
 
       def remove_brochure
         @company = Company.find(params[:id])
-	@company.brochure = nil
-	@company.save
-	redirect_to edit_company_path(@company)
+	      @company.brochure = nil
+	      @company.save
+	      redirect_to edit_company_path(@company)
       end
 
       def remove_nota_informativa
         @company = Company.find(params[:id])
-	@company.nota_informativa = nil
-	@company.save
-	redirect_to edit_company_path(@company)
+	      @company.nota_informativa = nil
+	      @company.save
+	      redirect_to edit_company_path(@company)
       end
 
 
       private
       def company_params
-        params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionari, :brochure, :nota_informativa, :created_at, :updated_at)
+        params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionariocomp1, :questionariocomp2, :questionariobs1, :questionariobs2, :brochure, :brochurebs, :nota_informativa, :created_at, :updated_at)
       end
 
       def sort_column
@@ -148,9 +193,9 @@ class CompaniesController < ApplicationController
       end
 
       def button_link_to(name, url)
-	content_tag :button, :type => "button", :onclick => "window.location.href =  '#{url_for(url)}'; " do
-	  "#{name}"
-	end
-      end
+	      content_tag :button, :type => "button", :onclick => "window.location.href =  '#{url_for(url)}'; " do
+	      "#{name}"
+	    end
 
+end
 end

@@ -6,7 +6,7 @@
   -#.container
   .row
     .col-md-2.text-left
-      %p= button_to 'Rinomina area', editarea_path(params), :method => :get, class: 'btn btn-primary btn-sm custom-view'
+      %p= button_to 'Modifica area', editarea_path(@selected_company), :method => :get, class: 'btn btn-primary btn-sm custom-view'
     .col-md-7.text-left
       %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get, class: 'btn btn-primary btn-sm custom-view'
     .col-md-3.text-left
@@ -54,7 +54,7 @@
 
     .col-md-3
       .details-table
-        %table#details.compact.stripe
+        %table#details.stripe.compact 
           %thead
             %tr
               %th{:colspan => 2}='Details'
@@ -103,11 +103,23 @@
               %td='Scheda Condizioni:'
               %td= link_to @selected_company.scheda_condizioni.original_filename,  @selected_company.scheda_condizioni.url, :target => "_blank"
             %tr
-              %td='Questionari Compagnia:'
-              %td= link_to @selected_company.questionari.original_filename,  @selected_company.questionari.url, :target => "_blank"
+              %td='Questionario Compagnia 1:'
+              %td= link_to @selected_company.questionariocomp1.original_filename,  @selected_company.questionariocomp1.url, :target => "_blank"
+            %tr
+              %td='Questionario Compagnia 2:'
+              %td= link_to @selected_company.questionariocomp2.original_filename,  @selected_company.questionariocomp2.url, :target => "_blank"
+            %tr
+              %td='Questionario Brokerstudio 1:'
+              %td= link_to @selected_company.questionariobs1.original_filename,  @selected_company.questionariobs1.url, :target => "_blank"
+            %tr
+              %td='Questionario Brokerstudio 2:'
+              %td= link_to @selected_company.questionariobs2.original_filename,  @selected_company.questionariobs2.url, :target => "_blank"
             %tr
               %td='Brochure Compagnia:'
               %td= link_to @selected_company.brochure.original_filename,  @selected_company.brochure.url, :target => "_blank"
+            %tr
+              %td='Brochure Brokerstudio:'
+              %td= link_to @selected_company.brochurebs.original_filename,  @selected_company.brochurebs.url, :target => "_blank"  
             %tr
               %td='Nota Informativa:'
               %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url, :target => "_blank"

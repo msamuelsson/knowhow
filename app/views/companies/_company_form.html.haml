@@ -51,14 +51,15 @@
   %tr
     %td= label :company, :note_operative, 'Note Operative'
     %td= text_area :company, 'note_operative'
-
-  %tr
-    %td= label :company, :portale, 'Portale'
-    %td= url_field :company, 'portale'
-
-  %tr
-    %td= label :company, :credenziali, 'Credenziali'
-    %td= text_area :company, 'credenziali'
+    
+  - if controller.action_name == "edit"
+    %tr
+      %td= label :company, :portale, 'Portale'
+      %td= url_field :company, 'portale'
+ 
+    %tr
+      %td= label :company, :credenziali, 'Credenziali'
+      %td= text_area :company, 'credenziali'
 
   %tr
     %td= label :company, :premio_minimo, 'Premio Minimo'
@@ -69,25 +70,30 @@
     -unless @company.scheda_condizioni.url.empty?
       %td= link_to "#{@company.scheda_condizioni.original_filename}",  "#{@company.scheda_condizioni.url}", :target => "_blank" 
       %td= link_to 'Elimina', remove_company_scheda_condizioni_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
-      -#%td= label :company, :scheda_condizioni, 'Sostituisci'
     -else
-      %td= file_field :company, :scheda_condizioni
+      %td= file_field :company, 'scheda_condizioni'
 
   %tr
-    %td= label :company, :questionari, 'Questionari Compagnia'
-    -unless @company.questionari.url.empty?
-      %td= link_to "#{@company.questionari.original_filename}",  "#{@company.questionari.url}", :target => "_blank" 
-      %td= link_to 'Elimina', remove_company_questionari_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
-      -#%td= label :company, :questionari, 'Sostituisci'
+    %td= label :company, :questionariocomp1, 'Questionario Compagnia 1'
+    -unless @company.questionariocomp1.url.empty?
+      %td= link_to "#{@company.questionariocomp1.original_filename}",  "#{@company.questionariocomp1.url}", :target => "_blank" 
+      %td= link_to 'Elimina', remove_company_questionariocomp1_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
     -else  
-      %td= file_field :company, 'questionari'
+      %td= file_field :company, 'questionariocomp1'
+      
+  %tr
+    %td= label :company, :questionariocomp2, 'Questionario Compagnia 2'
+    -unless @company.questionariocomp2.url.empty?
+      %td= link_to "#{@company.questionariocomp2.original_filename}",  "#{@company.questionariocomp2.url}", :target => "_blank" 
+      %td= link_to 'Elimina', remove_company_questionariocomp2_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+    -else  
+      %td= file_field :company, 'questionariocomp2'
 
   %tr
     %td= label :company, :brochure, 'Brochure Compagnia'
     -unless @company.brochure.url.empty?
       %td= link_to "#{@company.brochure.original_filename}",  "#{@company.brochure.url}", :target => "_blank" 
       %td= link_to 'Elimina', remove_company_brochure_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
-      -#%td= label :company, :brochure, 'Sostituisci'
     -else
       %td= file_field :company, 'brochure'
 
@@ -96,7 +102,6 @@
     -unless @company.nota_informativa.url.empty?
       %td= link_to "#{@company.nota_informativa.original_filename}",  "#{@company.nota_informativa.url}", :target => "_blank" 
       %td= link_to 'Elimina', remove_company_nota_informativa_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
-      -#%td= label :company, :nota_informativa, 'Sostituisci'
     -else
       %td= file_field :company, 'nota_informativa'
 
@@ -105,10 +110,4 @@
       %div#button
         = submit_tag 'Salva', class: 'btn btn-primary custom'
 
--#  %tr
-    %td
-      %div#button
-        = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get
--#  - if controller.action_name == "edit"
-    %td
-      = button_to 'Delete', company_path(@company), :method => :delete, :confirm => 'Are you sure?'
+

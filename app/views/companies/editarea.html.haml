@@ -2,20 +2,47 @@
   =render :partial => 'header_form'
 
 .form-title
-  %h2 Rinomina Area
+  %h2 Modifica Area
 
-=form_tag updatearea_path(@selected_area), :method => :post, :html => {:class => "form-horizontal"} do 
-      
-  .form-group
-    .col-md-2
-      = label :new_area, 'Nuova Area', class: "control-label"
-    .col-md-10
-      = text_field_tag :new_area, "#{@selected_area}"
-      
-  .form-group
-    .col-md-12
-    %div#button
-      = submit_tag 'Salva', class: 'btn btn-primary custom'
+= form_tag updatearea_path(@company), :method => :post, :multipart => :true do 
+
+  %table
+    %tr
+      %td= label :company, :area, 'Nome Area'
+      %td= text_field :company, 'area'
+    
+    %tr
+      %td= label :company, :questionariobs1, 'Questionario Brokerstudio 1'
+      -unless @company.questionariobs1.url.empty?
+        %td= link_to "#{@company.questionariobs1.original_filename}",  "#{@company.questionariobs1.url}", :target => "_blank" 
+        %td= link_to 'Elimina', remove_company_questionariobs1_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+      -else  
+        %td= file_field :company, 'questionariobs1'
+        
+    %tr
+      %td= label :company, :questionariobs2, 'Questionario Brokerstudio 2'
+      -unless @company.questionariobs2.url.empty?
+        %td= link_to "#{@company.questionariobs2.original_filename}",  "#{@company.questionariobs2.url}", :target => "_blank" 
+        %td= link_to 'Elimina', remove_company_questionariobs2_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+      -else  
+        %td= file_field :company, 'questionariobs2'
+        
+    %tr
+      %td= label :company, :brochurebs, 'Brochure Brokerstudio'
+      -unless @company.brochurebs.url.empty?
+        %td= link_to "#{@company.brochurebs.original_filename}",  "#{@company.brochurebs.url}", :target => "_blank" 
+        %td= link_to 'Elimina', remove_company_brochurebs_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+        -#%td= label :company, :brochure, 'Sostituisci'
+      -else
+        %td= file_field :company, 'brochurebs'
+                      
+    %tr
+      %td
+        %div#button
+          = submit_tag 'Salva', class: 'btn btn-primary custom'     
+       
+  
+
      
 %div#button
   = button_to 'Annulla', companies_path(:area_filter => @selected_area), :method => :get, class: 'btn btn-warning custom'
