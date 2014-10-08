@@ -60,12 +60,22 @@ html, body {
 
 table a {
     color: 0066CC;  /*links*/
-    font-size: 0.9em;
+    font-size: 1.0em;
 }
 
 table td {
     text-align: left;
     font-size: 0.8em;
+}
+
+textarea#company_credenziali {
+	width: 29.3em;
+	margin-top: 0.7em;*/
+}
+
+textarea#company_note_operative{
+	width: 29.3em;
+	margin-top: 0.7em;*/
 }
 
 table th {
@@ -173,6 +183,10 @@ form input {
     font-size: 15px;
     width: 25em;
     margin-top: 0.7em;
+}
+
+form input text_area {
+	width: 25em;
 }
 
 #button {
