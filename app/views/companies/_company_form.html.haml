@@ -24,7 +24,8 @@
 
   %tr
     %td= label :company, :autore, 'Autore'
-    %td= text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}", :disabled => true
+    -#%td= text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}", :disabled => true
+    %td= text_field :company, :autore, :value => "#{request.env['REMOTE_USER']}", :readonly => true
 
   %tr
     %td= label :company, :provvigione, 'Provvigioni'
