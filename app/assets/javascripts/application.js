@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require dataTables/jquery.dataTables
+//= require dataTables.responsive.js
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap.min
+//= require bootstrap-table.min
 //= require jasny-bootstrap.js
 //= require_tree .
 

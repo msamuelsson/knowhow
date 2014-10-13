@@ -14,8 +14,10 @@
  *= require bootstrap
  *= require jquery-ui
  *= require dataTables/jquery.dataTables
+ *= require dataTables.responsive.css
  *= require jasny-bootstrap
  *= require bootstrap.min
+ *= require bootstrap-table.min 
  *= require_tree 
  */
 
@@ -31,7 +33,7 @@ html, body {
 }
 
 .header {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     padding-left: 50px;
     padding-right: 50px;
     border-bottom: 1px solid DarkSlateGrey;
@@ -39,8 +41,8 @@ html, body {
 
 .table-content {
     margin-bottom: 40px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .footer {
@@ -127,8 +129,8 @@ table th {
 
 #flashes {
   background: transparent;
-  margin: 1em;
-  padding: 4px;
+  margin-top: 4px;
+  padding: 0px;
   color: 006600;
   font-weight: bold;
   text-align: center;
