@@ -120,6 +120,7 @@ table th {
 
 .details-table table {
     border: 1px solid DarkSlateGrey;
+    empty-cells: show;
 }
 
 .details-table tr:hover td {

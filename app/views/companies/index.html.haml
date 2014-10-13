@@ -59,12 +59,10 @@
           %table#details.stripe.compact
             %thead
               %tr
-                %th{:colspan => 2}='Details'
+                %th='Details'
+                %th=' '
                 
-  
-  
-  
-            %tbody 
+            %tbody.rowlink{"data-link" => "row"} 
               %tr
                 %td='Compagnia:' 
                 %td= @selected_company.compagnia
