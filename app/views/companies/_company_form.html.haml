@@ -17,10 +17,13 @@
 
   %tr
     %td= label :company, :area, 'Area'
-    - if controller.action_name == "edit"
+    -if controller.action_name == "edit"
       %td= text_field :company, 'area'
-    - else
-      %td= text_field :company, :area,  :value => "#{@selected_area}"
+    -else 
+      -if @selected_area == "all_areas"
+        %td= text_field :company, :area, :value => "#{@selected_company_area}"
+      -else
+        %td= text_field :company, :area,  :value => "#{@selected_area}"
 
   %tr
     %td= label :company, :autore, 'Autore'

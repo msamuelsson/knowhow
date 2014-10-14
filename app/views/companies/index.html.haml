@@ -6,7 +6,8 @@
   .container-fluid
     .row
       .col-md-2.text-left
-        %p= button_to 'Modifica area', editarea_path(@selected_company), :method => :get, class: 'btn btn-primary btn-sm custom-view'
+        - if @selected_area != "all_areas"
+          %p= button_to 'Modifica area', editarea_path(@selected_company), :method => :get, class: 'btn btn-primary btn-sm custom-view'
       .col-md-7.text-left
         %p= button_to 'Nuova compagnia', new_company_path(params), :method => :get, class: 'btn btn-primary btn-sm custom-view'
       .col-md-3.text-left
@@ -25,13 +26,17 @@
                 %tr
                   -#%td{:class => ((@selected_area == "#{area}")? "hilite": nil)}= area
                   %td{:class => ((@selected_area == "#{area}")? "hilite" : nil)}= link_to "#{area}", companies_path(:area_filter => "#{area}")
-  
+        %p
+        %p= link_to "Tutte le aree", companies_path(:area_filter => "all_areas"), :class => :button, class: 'btn btn-primary btn-sm custom-view'
+     
       .col-md-7
         .company-table
           -#%table{"data-cache" => "false", "data-height" => "599", "data-toggle" => "table"}
           %table#company.stripe.compact
             %thead
               %tr
+                - if @selected_area == "all_areas"
+                  %th Area
                 %th Compagnia
                 %th Provvigioni
                 %th Ultimo Aggiornamento
@@ -45,6 +50,8 @@
                 -#%tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil), :onclick => "window.location.href = '"
                 -#+  companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}") + "'"}
                 %tr{:class => ( ( (@selected_company_id == "#{company.id}") || (@selected_company_id == company.id) )? "hilite" : nil)}
+                  - if @selected_area == "all_areas"
+                    %td= company.area
                   %td= link_to "#{company.compagnia}", companies_path(:area_filter => "#{company.area}", :company_id => "#{company.id}")                 
                   %td= company.provvigione 
                   %td= company.aggiornamento
@@ -124,6 +131,7 @@
                 %td='Nota Informativa:'
                 %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url, :target => "_blank"
 
+ 
 .footer
   .container
     .row
