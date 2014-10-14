@@ -4,7 +4,7 @@
 .form-title
  %h2 Nuova Compagnia
 
-= form_tag companies_path(@selected_area), :method => :post, :multipart => :true do
+= form_tag companies_path(@selected_area, @selected_company_area), :method => :post, :multipart => :true do
  = render :partial => 'company_form'
 
 %div#button
