@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
   def self.all_areas ; %w[Energy Technology Liability Cauzione Credit Rischi-civili-Abitazioni] ; end #  shortcut: array of strings
   validates :compagnia, :presence => true
+  # Scheda Condizioni
   has_attached_file :scheda_condizioni,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
@@ -14,7 +15,7 @@ class Company < ActiveRecord::Base
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
 	
-	# Questionario Compagnia 1
+  # Questionario Compagnia 1
   has_attached_file :questionariocomp1,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
@@ -28,7 +29,7 @@ class Company < ActiveRecord::Base
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
 	  
-	# Questionario Compagnia 2
+  # Questionario Compagnia 2
   has_attached_file :questionariocomp2,
     :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
     :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
