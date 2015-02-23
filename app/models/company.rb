@@ -84,7 +84,6 @@ class Company < ActiveRecord::Base
 		  "application/msword",
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
-	  #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
 	  
 	# Brochure Brokerstudio  
   has_attached_file :brochurebs,
@@ -99,9 +98,8 @@ class Company < ActiveRecord::Base
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
     :size => { :in => 0..50.megabytes }
-    #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }  
   
-  # Nota Informative  
+  # Nota Informativa  
   has_attached_file :nota_informativa,
 	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
 	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
@@ -114,5 +112,13 @@ class Company < ActiveRecord::Base
 		  "application/msword",
 		  "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] }, 
 	  :size => { :in => 0..50.megabytes }
-	  #:content_type => { :content_type => "application/pdf" }, :size => { :in => 0..50.megabytes }
+  
+  # Altri Documenti  
+  has_attached_file :altri_documenti,
+	  :url => "/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+	  :path => "/var/www/secure/knowhow_attachments/:attachment/:id_partition/:filename",
+	  :default_url => "",
+	  :default_path => ""
+  validates_attachment :altri_documenti, 
+  	  :size => { :in => 0..50.megabytes }
 end

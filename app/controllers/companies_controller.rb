@@ -61,6 +61,10 @@ class CompaniesController < ApplicationController
         if @comp_info != nil
           @company.portale = @comp_info.portale
           @company.credenziali = @comp_info.credenziali
+          @company.altri_documenti_file_name = @comp_info.altri_documenti_file_name
+          @company.altri_documenti_content_type = @comp_info.altri_documenti_content_type
+          @company.altri_documenti_file_size = @comp_info.altri_documenti_file_size
+          @company.altri_documenti_updated_at = @comp_info.altri_documenti_updated_at
         end
         
         # Add area specific info
@@ -96,10 +100,15 @@ class CompaniesController < ApplicationController
 
       def update
         # Update all parameters for this specific company and for this specific area, 
-        # also update Portale and Credenziale for all companies with the same name (for all areas)
+        # also update Portale, Credenziali and Altri Documenti for all companies with the same name (for all areas)
         @company = Company.find params[:id]
         if @company.update_attributes(company_params)
-          Company.where(:compagnia => @company.compagnia).update_all({:portale => @company.portale, :credenziali => @company.credenziali})
+          Company.where(:compagnia => @company.compagnia).update_all({:portale => @company.portale, 
+								     :credenziali => @company.credenziali,
+								     :altri_documenti_file_name => @company.altri_documenti_file_name,
+								     :altri_documenti_content_type => @company.altri_documenti_content_type,
+								     :altri_documenti_file_size => @company.altri_documenti_file_size,
+								     :altri_documenti_updated_at => @company.altri_documenti_updated_at })
           flash[:notice] = "#{@company.compagnia} aggiornata."
           redirect_to companies_path(:area_filter => @company.area, :company_id => @company.id)
         else
@@ -190,16 +199,25 @@ class CompaniesController < ApplicationController
       end
 
       def remove_nota_informativa
-        @company = Company.find(params[:id])
+	      @company = Company.find(params[:id])
 	      @company.nota_informativa = nil
 	      @company.save
 	      redirect_to edit_company_path(@company)
       end
 
+      def remove_altri_documenti
+        @company = Company.find(params[:id])
+        Company.where(:compagnia => @company.compagnia).each do |company_compagnia|
+          company_compagnia.altri_documenti = nil
+          company_compagnia.save
+        end
+        redirect_to edit_company_path(@company)
+      end
+      
 
       private
       def company_params
-        params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionariocomp1, :questionariocomp2, :questionariobs1, :questionariobs2, :brochure, :brochurebs, :nota_informativa, :created_at, :updated_at)
+        params.require(:company).permit(:compagnia, :area, :provvigione, :autore, :aggiornamento, :canale_1, :canale_2, :interlocutore, :note_operative, :portale, :credenziali, :premio_minimo, :scheda_condizioni, :questionariocomp1, :questionariocomp2, :questionariobs1, :questionariobs2, :brochure, :brochurebs, :nota_informativa, :altri_documenti, :created_at, :updated_at)
       end
 
       def sort_column

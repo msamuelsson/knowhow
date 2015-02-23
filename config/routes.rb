@@ -72,4 +72,5 @@
    get 'company/:id/remove_brochure', to: 'companies#remove_brochure', as: 'remove_company_brochure'
    get 'company/:id/remove_brochurebs', to: 'companies#remove_brochurebs', as: 'remove_company_brochurebs'
    get 'company/:id/remove_nota_informativa', to: 'companies#remove_nota_informativa', as: 'remove_company_nota_informativa'
+   get 'company/:id/remove_altri_documenti', to: 'companies#remove_altri_documenti', as: 'remove_company_altri_documenti'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006133109) do
+ActiveRecord::Schema.define(version: 20150223093702) do
 
   create_table "companies", force: true do |t|
     t.string   "compagnia"
@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(version: 20141006133109) do
     t.string   "questionariobs2_content_type"
     t.integer  "questionariobs2_file_size"
     t.datetime "questionariobs2_updated_at"
+    t.string   "altri_documenti_file_name"
+    t.string   "altri_documenti_content_type"
+    t.integer  "altri_documenti_file_size"
+    t.datetime "altri_documenti_updated_at"
   end
 
   create_table "users", force: true do |t|

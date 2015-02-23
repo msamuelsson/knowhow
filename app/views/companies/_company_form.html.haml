@@ -110,6 +110,14 @@
       %td= file_field :company, 'nota_informativa'
 
   %tr
+    %td= label :company, :altri_documenti, 'Altri Documenti Compagnia'
+    -unless @company.altri_documenti.url.empty?
+      %td= link_to "#{@company.altri_documenti.original_filename}",  "#{@company.altri_documenti.url}", :target => "_blank" 
+      %td= link_to 'Elimina', remove_company_altri_documenti_path, :class => :button, class: 'btn btn-danger custom', data: { confirm: "Are you sure?" }
+    -else
+      %td= file_field :company, 'altri_documenti'
+
+  %tr
     %td
       %div#button
         = submit_tag 'Salva', class: 'btn btn-primary custom'

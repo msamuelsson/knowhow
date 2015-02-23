@@ -130,6 +130,9 @@
               %tr
                 %td='Nota Informativa:'
                 %td= link_to @selected_company.nota_informativa.original_filename,  @selected_company.nota_informativa.url, :target => "_blank"
+              %tr
+                %td='Altri Documenti Compagnia:'
+                %td= link_to @selected_company.altri_documenti.original_filename,  @selected_company.altri_documenti.url, :target => "_blank"
 
  
 .footer
